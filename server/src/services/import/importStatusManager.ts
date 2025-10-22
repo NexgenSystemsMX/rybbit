@@ -34,10 +34,7 @@ export class ImportStatusManager {
     }
   }
 
-  static async updateProgress(
-    importId: string,
-    importedEvents: number,
-  ): Promise<void> {
+  static async updateProgress(importId: string, importedEvents: number): Promise<void> {
     try {
       await db
         .update(importStatus)

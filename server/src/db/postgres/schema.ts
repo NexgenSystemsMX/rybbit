@@ -66,7 +66,9 @@ export const sites = pgTable(
     createdBy: text("created_by")
       .notNull()
       .references(() => user.id),
-    organizationId: text("organization_id").notNull().references(() => organization.id),
+    organizationId: text("organization_id")
+      .notNull()
+      .references(() => organization.id),
     public: boolean().default(false),
     saltUserIds: boolean().default(false),
     blockBots: boolean().default(true).notNull(),
@@ -598,16 +600,9 @@ export const notificationChannels = pgTable(
   ]
 );
 
-export const importSourceEnum = pgEnum("import_source_enum", [
-  "umami",
-]);
+export const importSourceEnum = pgEnum("import_source_enum", ["umami"]);
 
-export const importStatusEnum = pgEnum("import_status_enum", [
-  "pending",
-  "processing",
-  "completed",
-  "failed",
-]);
+export const importStatusEnum = pgEnum("import_status_enum", ["pending", "processing", "completed", "failed"]);
 
 // Import status table for tracking data import progress
 export const importStatus = pgTable(
@@ -624,7 +619,7 @@ export const importStatus = pgTable(
     completedAt: timestamp("completed_at", { mode: "string" }),
     fileName: text("file_name").notNull(),
   },
-  (table) => [
+  table => [
     foreignKey({
       columns: [table.siteId],
       foreignColumns: [sites.siteId],

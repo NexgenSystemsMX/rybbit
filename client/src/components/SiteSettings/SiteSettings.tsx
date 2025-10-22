@@ -74,10 +74,7 @@ function SiteSettingsInner({ siteMetadata, trigger }: { siteMetadata: SiteRespon
             <ApiKeyManager siteId={siteMetadata.siteId} disabled={disabled} />
           </TabsContent>
 
-          <TabsContent
-            value="import"
-            className="pt-4 space-y-4 max-h-[70vh] overflow-y-auto"
-          >
+          <TabsContent value="import" className="pt-4 space-y-4 max-h-[70vh] overflow-y-auto">
             <ImportManager siteId={siteMetadata.siteId} disabled={disabled} />
           </TabsContent>
 

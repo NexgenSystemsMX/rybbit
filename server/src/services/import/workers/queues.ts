@@ -10,4 +10,4 @@ export const createJobQueues = async () => {
   } catch (error) {
     throw new Error(`Failed to create job queues: ${error instanceof Error ? error.message : "Unknown error"}`);
   }
-}
+};

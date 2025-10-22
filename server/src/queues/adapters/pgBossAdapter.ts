@@ -16,7 +16,7 @@ export class PgBossAdapter implements IJobQueue {
       retryLimit: 0,
     });
 
-    this.boss.on("error", (error) => {
+    this.boss.on("error", error => {
       console.error("[PgBoss] Error:", error);
     });
   }
@@ -35,11 +35,7 @@ export class PgBossAdapter implements IJobQueue {
     await this.boss.createQueue(queueName);
   }
 
-  async send<T = any>(
-    queueName: string,
-    data: T,
-    options?: { priority?: number; delay?: number }
-  ): Promise<string> {
+  async send<T = any>(queueName: string, data: T, options?: { priority?: number; delay?: number }): Promise<string> {
     const jobId = await this.boss.send(queueName, data as object, {
       priority: options?.priority,
       startAfter: options?.delay ? new Date(Date.now() + options.delay) : undefined,
@@ -64,7 +60,7 @@ export class PgBossAdapter implements IJobQueue {
         pollingIntervalSeconds: config.pollingIntervalSeconds ?? 2,
       },
       async (jobs: Job<T>[]) => {
-        const normalizedJobs: JobData<T>[] = jobs.map((job) => ({
+        const normalizedJobs: JobData<T>[] = jobs.map(job => ({
           id: job.id,
           data: job.data,
         }));

@@ -104,26 +104,32 @@ export class UmamiImportMapper {
     edge: "Edge",
   };
 
-  private static readonly browserSchema = z.string().max(30).transform((browser) => {
-    const key = browser.toLowerCase();
-    return UmamiImportMapper.browserMap[key] ?? browser;
-  });
+  private static readonly browserSchema = z
+    .string()
+    .max(30)
+    .transform(browser => {
+      const key = browser.toLowerCase();
+      return UmamiImportMapper.browserMap[key] ?? browser;
+    });
 
   private static readonly osMap: Record<string, string> = {
     "windows 10": "Windows",
     "windows 7": "Windows",
     "windows server 2003": "Windows",
     "mac os": "macOS",
-    "ios": "iOS",
+    ios: "iOS",
     "android os": "Android",
-    "linux": "Linux",
+    linux: "Linux",
     "chrome os": "Chrome OS",
   };
 
-  private static readonly osSchema = z.string().max(25).transform((os) => {
-    const key = os.toLowerCase();
-    return UmamiImportMapper.osMap[key] ?? os;
-  });
+  private static readonly osSchema = z
+    .string()
+    .max(25)
+    .transform(os => {
+      const key = os.toLowerCase();
+      return UmamiImportMapper.osMap[key] ?? os;
+    });
 
   private static readonly deviceMap: Record<string, "Desktop" | "Mobile"> = {
     laptop: "Desktop",
@@ -132,10 +138,13 @@ export class UmamiImportMapper {
     tablet: "Mobile",
   };
 
-  private static readonly deviceSchema = z.string().max(20).transform((device) => {
-    const key = device.toLowerCase();
-    return UmamiImportMapper.deviceMap[key] ?? device;
-  });
+  private static readonly deviceSchema = z
+    .string()
+    .max(20)
+    .transform(device => {
+      const key = device.toLowerCase();
+      return UmamiImportMapper.deviceMap[key] ?? device;
+    });
 
   private static readonly umamiEventSchema = z.object({
     session_id: z.string().uuid(),
@@ -144,17 +153,35 @@ export class UmamiImportMapper {
     browser: UmamiImportMapper.browserSchema,
     os: UmamiImportMapper.osSchema,
     device: UmamiImportMapper.deviceSchema,
-    screen: z.string().regex(/^\d{1,5}x\d{1,5}$/).or(z.literal("")),
+    screen: z
+      .string()
+      .regex(/^\d{1,5}x\d{1,5}$/)
+      .or(z.literal("")),
     language: z.string().max(35),
-    country: z.string().regex(/^[A-Z]{2}$/).or(z.literal("")),
-    region: z.string().regex(/^[A-Z]{2}-[A-Z0-9]{1,3}$/).or(z.literal("")),
+    country: z
+      .string()
+      .regex(/^[A-Z]{2}$/)
+      .or(z.literal("")),
+    region: z
+      .string()
+      .regex(/^[A-Z]{2}-[A-Z0-9]{1,3}$/)
+      .or(z.literal("")),
     city: z.string().max(60),
 
     url_path: z.string().max(2048),
-    url_query: z.string().max(2048).transform((querystring) => querystring ? `?${querystring}` : ""),
+    url_query: z
+      .string()
+      .max(2048)
+      .transform(querystring => (querystring ? `?${querystring}` : "")),
     referrer_path: z.string().max(2048),
-    referrer_query: z.string().max(2048).transform((querystring) => querystring ? `?${querystring}` : ""),
-    referrer_domain: z.string().max(253).transform((url) => url ? `https://${url}` : ""),
+    referrer_query: z
+      .string()
+      .max(2048)
+      .transform(querystring => (querystring ? `?${querystring}` : "")),
+    referrer_domain: z
+      .string()
+      .max(253)
+      .transform(url => (url ? `https://${url}` : "")),
     page_title: z.string().max(512),
 
     event_type: z.enum(["1", "2"]),

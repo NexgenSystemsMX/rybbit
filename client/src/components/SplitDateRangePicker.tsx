@@ -7,11 +7,7 @@ import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
 import { Calendar } from "@/components/ui/calendar";
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from "@/components/ui/popover";
+import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 
 export interface DateRange {
   startDate?: DateTime;
@@ -49,7 +45,7 @@ export function SplitDateRangePicker({
   maxDate = DateTime.utc(),
   minDate,
   className,
-  layout = "horizontal"
+  layout = "horizontal",
 }: DateRangePickerProps) {
   const [internalValue, setInternalValue] = useState<DateRange>({});
 
@@ -83,9 +79,7 @@ export function SplitDateRangePicker({
 
   const hasDateSelected = !!(startDate || endDate);
 
-  const gridClass = layout === "horizontal"
-    ? "grid-cols-1 sm:grid-cols-2"
-    : "grid-cols-1";
+  const gridClass = layout === "horizontal" ? "grid-cols-1 sm:grid-cols-2" : "grid-cols-1";
 
   return (
     <div className={cn("space-y-4", className)}>
@@ -103,10 +97,7 @@ export function SplitDateRangePicker({
             <PopoverTrigger asChild>
               <Button
                 variant="outline"
-                className={cn(
-                  "w-full justify-start text-left font-normal",
-                  !startDate && "text-muted-foreground"
-                )}
+                className={cn("w-full justify-start text-left font-normal", !startDate && "text-muted-foreground")}
                 disabled={disabled}
               >
                 <CalendarIcon className="mr-2 h-4 w-4" />
@@ -118,7 +109,7 @@ export function SplitDateRangePicker({
                 mode="single"
                 selected={startDate?.toJSDate()}
                 onSelect={handleStartDateChange}
-                disabled={(date) => {
+                disabled={date => {
                   const d = DateTime.fromJSDate(date, { zone: "utc" }).startOf("day");
                   if (maxDate && d > maxDate.startOf("day")) return true;
                   if (minDate && d < minDate.startOf("day")) return true;
@@ -137,10 +128,7 @@ export function SplitDateRangePicker({
             <PopoverTrigger asChild>
               <Button
                 variant="outline"
-                className={cn(
-                  "w-full justify-start text-left font-normal",
-                  !endDate && "text-muted-foreground"
-                )}
+                className={cn("w-full justify-start text-left font-normal", !endDate && "text-muted-foreground")}
                 disabled={disabled}
               >
                 <CalendarIcon className="mr-2 h-4 w-4" />
@@ -152,7 +140,7 @@ export function SplitDateRangePicker({
                 mode="single"
                 selected={endDate?.toJSDate()}
                 onSelect={handleEndDateChange}
-                disabled={(date) => {
+                disabled={date => {
                   const d = DateTime.fromJSDate(date, { zone: "utc" }).startOf("day");
                   if (maxDate && d > maxDate.startOf("day")) return true;
                   if (minDate && d < minDate.startOf("day")) return true;
@@ -168,13 +156,7 @@ export function SplitDateRangePicker({
 
       {showClear && hasDateSelected && (
         <div className="flex items-center gap-2">
-          <Button
-            variant="outline"
-            size="sm"
-            onClick={handleClear}
-            className="shrink-0"
-            disabled={disabled}
-          >
+          <Button variant="outline" size="sm" onClick={handleClear} className="shrink-0" disabled={disabled}>
             <X className="h-4 w-4 mr-1" />
             {clearButtonText}
           </Button>

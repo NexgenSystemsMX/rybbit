@@ -1,9 +1,4 @@
-import {
-  S3Client,
-  PutObjectCommand,
-  GetObjectCommand,
-  DeleteObjectCommand,
-} from "@aws-sdk/client-s3";
+import { S3Client, PutObjectCommand, GetObjectCommand, DeleteObjectCommand } from "@aws-sdk/client-s3";
 import { Upload } from "@aws-sdk/lib-storage";
 import { NodeHttpHandler } from "@smithy/node-http-handler";
 import { Readable } from "stream";
@@ -245,7 +240,7 @@ class R2StorageService {
         new GetObjectCommand({
           Bucket: this.bucketName,
           Key: key,
-        }),
+        })
       );
 
       if (!response.Body) {
@@ -273,7 +268,7 @@ class R2StorageService {
         new DeleteObjectCommand({
           Bucket: this.bucketName,
           Key: key,
-        }),
+        })
       );
       this.logger.info({ key }, "Successfully deleted import file");
     } catch (error) {

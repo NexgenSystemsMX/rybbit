@@ -7,21 +7,20 @@ import { IS_CLOUD } from "../../lib/const.js";
 import { r2Storage } from "../../services/storage/r2StorageService.js";
 import { clickhouse } from "../../db/clickhouse/clickhouse.js";
 
-const deleteImportRequestSchema = z.object({
-  params: z.object({
-    site: z.string().min(1),
-    importId: z.string().min(1),
-  }),
-}).strict();
+const deleteImportRequestSchema = z
+  .object({
+    params: z.object({
+      site: z.string().min(1),
+      importId: z.string().min(1),
+    }),
+  })
+  .strict();
 
 type DeleteImportRequest = {
   Params: z.infer<typeof deleteImportRequestSchema.shape.params>;
 };
 
-export async function deleteSiteImport(
-  request: FastifyRequest<DeleteImportRequest>,
-  reply: FastifyReply,
-) {
+export async function deleteSiteImport(request: FastifyRequest<DeleteImportRequest>, reply: FastifyReply) {
   try {
     const parsed = deleteImportRequestSchema.safeParse({
       params: request.params,
@@ -80,7 +79,7 @@ export async function deleteSiteImport(
     } catch (chError) {
       console.error(`Failed to delete ClickHouse events for ${importId}:`, chError);
       return reply.status(500).send({
-        error: "Failed to delete imported events from database"
+        error: "Failed to delete imported events from database",
       });
     }
 
@@ -89,8 +88,8 @@ export async function deleteSiteImport(
 
     return reply.send({
       data: {
-        message: "Import deleted successfully"
-      }
+        message: "Import deleted successfully",
+      },
     });
   } catch (error) {
     console.error("Error deleting import:", error);

@@ -10,10 +10,7 @@ export interface DeleteFileResult {
  * Delete an import file from storage.
  * Returns result instead of throwing to prevent worker crashes.
  */
-export const deleteImportFile = async (
-  storageLocation: string,
-  isR2Storage: boolean
-): Promise<DeleteFileResult> => {
+export const deleteImportFile = async (storageLocation: string, isR2Storage: boolean): Promise<DeleteFileResult> => {
   try {
     if (isR2Storage) {
       await r2Storage.deleteImportFile(storageLocation);

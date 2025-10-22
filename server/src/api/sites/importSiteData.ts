@@ -22,42 +22,46 @@ const isValidDate = (date: string) => {
 
 const parseDate = (date: string) => DateTime.fromFormat(date, "yyyy-MM-dd", { zone: "utc" });
 
-const importDataFieldsSchema = z.object({
-  fields: z.object({
-    source: z.enum(["umami"]),
-    startDate: z.string().refine(isValidDate).optional(),
-    endDate: z.string().refine(isValidDate).optional(),
-  }).refine((fields) => {
-    if (fields.startDate && fields.endDate) {
-      const start = parseDate(fields.startDate);
-      const end = parseDate(fields.endDate);
-      return start <= end;
-    }
-    return true;
-  }).refine((fields) => {
-    if (fields.startDate) {
-      const today = DateTime.utc().startOf("day");
-      const start = parseDate(fields.startDate);
-      return start <= today;
-    }
-    return true;
-  }),
-}).strict();
+const importDataFieldsSchema = z
+  .object({
+    fields: z
+      .object({
+        source: z.enum(["umami"]),
+        startDate: z.string().refine(isValidDate).optional(),
+        endDate: z.string().refine(isValidDate).optional(),
+      })
+      .refine(fields => {
+        if (fields.startDate && fields.endDate) {
+          const start = parseDate(fields.startDate);
+          const end = parseDate(fields.endDate);
+          return start <= end;
+        }
+        return true;
+      })
+      .refine(fields => {
+        if (fields.startDate) {
+          const today = DateTime.utc().startOf("day");
+          const start = parseDate(fields.startDate);
+          return start <= today;
+        }
+        return true;
+      }),
+  })
+  .strict();
 
-const importDataRequestSchema = z.object({
-  params: z.object({
-    site: z.string().min(1),
-  }),
-}).strict();
+const importDataRequestSchema = z
+  .object({
+    params: z.object({
+      site: z.string().min(1),
+    }),
+  })
+  .strict();
 
 type ImportDataRequest = {
   Params: z.infer<typeof importDataRequestSchema.shape.params>;
 };
 
-export async function importSiteData(
-  request: FastifyRequest<ImportDataRequest>,
-  reply: FastifyReply,
-) {
+export async function importSiteData(request: FastifyRequest<ImportDataRequest>, reply: FastifyReply) {
   try {
     const parsedParams = importDataRequestSchema.safeParse({
       params: request.params,
@@ -162,7 +166,7 @@ export async function importSiteData(
     return reply.status(202).send({
       data: {
         message: "File upload accepted and is now being processed.",
-      }
+      },
     });
   } catch (error) {
     console.error("Unexpected error during import:", error);

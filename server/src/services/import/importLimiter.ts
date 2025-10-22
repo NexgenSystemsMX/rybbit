@@ -7,13 +7,16 @@ export class ImportLimiter {
   private static readonly IMPORTED_EVENTS_LIMIT = 1_000_000;
   private static readonly CONCURRENT_IMPORT_LIMIT = 1;
 
-  static async checkConcurrentImportLimit(siteId: number): Promise<{
-    allowed: false;
-    reason: string;
-  } | {
-    allowed: true;
-    organizationId: string
-  }> {
+  static async checkConcurrentImportLimit(siteId: number): Promise<
+    | {
+        allowed: false;
+        reason: string;
+      }
+    | {
+        allowed: true;
+        organizationId: string;
+      }
+  > {
     const [siteResult] = await db
       .select({ organizationId: sites.organizationId })
       .from(sites)

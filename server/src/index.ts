@@ -166,7 +166,7 @@ server.register(multipart, {
   limits: {
     fileSize: IS_CLOUD ? 100 * 1024 * 1024 : undefined, // 100 MB max file size, infinite for self-hosted
     files: 1, // only allow 1 file
-  }
+  },
 });
 
 // Serve static files

@@ -4,21 +4,8 @@ import { useState, useMemo, useRef } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
-import {
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from "@/components/ui/table";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import {
   AlertDialog,
   AlertDialogAction,
@@ -33,16 +20,7 @@ import { Alert, AlertDescription } from "@/components/ui/alert";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
-import {
-  Upload,
-  FileText,
-  AlertCircle,
-  CheckCircle2,
-  Clock,
-  Loader2,
-  Database,
-  Trash2,
-} from "lucide-react";
+import { Upload, FileText, AlertCircle, CheckCircle2, Clock, Loader2, Database, Trash2 } from "lucide-react";
 import { useGetSiteImports, useImportSiteData, useDeleteSiteImport } from "@/api/admin/import";
 import { SplitDateRangePicker, DateRange } from "@/components/SplitDateRangePicker";
 
@@ -59,9 +37,7 @@ interface FileValidationError {
 const MAX_FILE_SIZE = 100 * 1024 * 1024; // 100MB
 const ALLOWED_FILE_TYPES = ["text/csv"];
 const ALLOWED_EXTENSIONS = [".csv"];
-const DATA_SOURCES = [
-  { value: "umami", label: "Umami" },
-];
+const DATA_SOURCES = [{ value: "umami", label: "Umami" }];
 
 export function ImportManager({ siteId, disabled }: ImportManagerProps) {
   const [file, setFile] = useState<File | null>(null);
@@ -89,14 +65,14 @@ export function ImportManager({ siteId, disabled }: ImportManagerProps) {
     if (file.size > MAX_FILE_SIZE) {
       return {
         type: "size",
-        message: `File size (${(file.size / 1024 / 1024).toFixed(1)}MB) exceeds the maximum limit of 100MB.`
+        message: `File size (${(file.size / 1024 / 1024).toFixed(1)}MB) exceeds the maximum limit of 100MB.`,
       };
     }
 
     if (!ALLOWED_FILE_TYPES.includes(file.type) && file.type !== "") {
       return {
         type: "type",
-        message: "Invalid file type. Only CSV files are accepted."
+        message: "Invalid file type. Only CSV files are accepted.",
       };
     }
 
@@ -104,14 +80,14 @@ export function ImportManager({ siteId, disabled }: ImportManagerProps) {
     if (!ALLOWED_EXTENSIONS.includes(extension)) {
       return {
         type: "type",
-        message: "Invalid file extension. Only .csv files are accepted."
+        message: "Invalid file extension. Only .csv files are accepted.",
       };
     }
 
     if (file.name.length > 255) {
       return {
         type: "name",
-        message: "Filename is too long. Please use a shorter filename."
+        message: "Filename is too long. Please use a shorter filename.",
       };
     }
 
@@ -182,31 +158,31 @@ export function ImportManager({ siteId, disabled }: ImportManagerProps) {
         return {
           color: "bg-green-100 text-green-800 border-green-200",
           icon: CheckCircle2,
-          label: "Completed"
+          label: "Completed",
         };
       case "failed":
         return {
           color: "bg-red-100 text-red-800 border-red-200",
           icon: AlertCircle,
-          label: "Failed"
+          label: "Failed",
         };
       case "processing":
         return {
           color: "bg-blue-100 text-blue-800 border-blue-200",
           icon: Loader2,
-          label: "Processing"
+          label: "Processing",
         };
       case "pending":
         return {
           color: "bg-yellow-100 text-yellow-800 border-yellow-200",
           icon: Clock,
-          label: "Pending"
+          label: "Pending",
         };
       default:
         return {
           color: "bg-gray-100 text-gray-800 border-gray-200",
           icon: Clock,
-          label: status
+          label: status,
         };
     }
   };
@@ -234,9 +210,7 @@ export function ImportManager({ siteId, disabled }: ImportManagerProps) {
             <Upload className="h-5 w-5" />
             Import Data
           </CardTitle>
-          <CardDescription>
-            Import data from other analytics platforms. Supports CSV files up to 100MB.
-          </CardDescription>
+          <CardDescription>Import data from other analytics platforms. Supports CSV files up to 100MB.</CardDescription>
         </CardHeader>
         <CardContent className="space-y-4">
           {/* Data Source Selection */}
@@ -245,16 +219,12 @@ export function ImportManager({ siteId, disabled }: ImportManagerProps) {
               <Database className="h-4 w-4" />
               Data Source
             </Label>
-            <Select
-              value={source}
-              onValueChange={setSource}
-              disabled={disabled || mutation.isPending}
-            >
+            <Select value={source} onValueChange={setSource} disabled={disabled || mutation.isPending}>
               <SelectTrigger>
                 <SelectValue placeholder="Select data source" />
               </SelectTrigger>
               <SelectContent>
-                {DATA_SOURCES.map((dataSource) => (
+                {DATA_SOURCES.map(dataSource => (
                   <SelectItem key={dataSource.value} value={dataSource.value}>
                     {dataSource.label}
                   </SelectItem>
@@ -296,19 +266,13 @@ export function ImportManager({ siteId, disabled }: ImportManagerProps) {
             <Alert variant="destructive">
               <div className="flex items-center gap-2">
                 <AlertCircle className="h-4 w-4" />
-                <AlertDescription>
-                  {fileError.message}
-                </AlertDescription>
+                <AlertDescription>{fileError.message}</AlertDescription>
               </div>
             </Alert>
           )}
 
           {/* Import Button */}
-          <Button
-            onClick={handleImportClick}
-            disabled={isImportDisabled}
-            className="w-full sm:w-auto"
-          >
+          <Button onClick={handleImportClick} disabled={isImportDisabled} className="w-full sm:w-auto">
             {mutation.isPending ? (
               <>
                 <Loader2 className="mr-2 h-4 w-4 animate-spin" />
@@ -339,9 +303,7 @@ export function ImportManager({ siteId, disabled }: ImportManagerProps) {
             <Alert className="border-green-200 bg-green-50">
               <div className="flex items-center gap-2">
                 <CheckCircle2 className="h-4 w-4 text-green-600" />
-                <AlertDescription>
-                  File uploaded successfully and is being processed.
-                </AlertDescription>
+                <AlertDescription>File uploaded successfully and is being processed.</AlertDescription>
               </div>
             </Alert>
           )}
@@ -351,9 +313,7 @@ export function ImportManager({ siteId, disabled }: ImportManagerProps) {
             <Alert className="border-green-200 bg-green-50">
               <div className="flex items-center gap-2">
                 <CheckCircle2 className="h-4 w-4 text-green-600" />
-                <AlertDescription>
-                  Import deleted successfully.
-                </AlertDescription>
+                <AlertDescription>Import deleted successfully.</AlertDescription>
               </div>
             </Alert>
           )}
@@ -376,9 +336,7 @@ export function ImportManager({ siteId, disabled }: ImportManagerProps) {
       <Card>
         <CardHeader>
           <CardTitle>Import History</CardTitle>
-          <CardDescription>
-            Track the status of your data imports
-          </CardDescription>
+          <CardDescription>Track the status of your data imports</CardDescription>
         </CardHeader>
         <CardContent>
           {isLoading && !data ? (
@@ -389,9 +347,7 @@ export function ImportManager({ siteId, disabled }: ImportManagerProps) {
           ) : error ? (
             <Alert variant="destructive">
               <AlertCircle className="h-4 w-4" />
-              <AlertDescription>
-                Failed to load import history. Please try refreshing the page.
-              </AlertDescription>
+              <AlertDescription>Failed to load import history. Please try refreshing the page.</AlertDescription>
             </Alert>
           ) : !data?.data?.length ? (
             <div className="text-center py-8 text-muted-foreground">
@@ -412,7 +368,7 @@ export function ImportManager({ siteId, disabled }: ImportManagerProps) {
                   </TableRow>
                 </TableHeader>
                 <TableBody>
-                  {sortedImports.map((imp) => {
+                  {sortedImports.map(imp => {
                     const statusInfo = getStatusInfo(imp.status);
                     const StatusIcon = statusInfo.icon;
 
@@ -430,14 +386,8 @@ export function ImportManager({ siteId, disabled }: ImportManagerProps) {
                         </TableCell>
                         <TableCell>
                           <div className="space-y-1">
-                            <Badge
-                              className={`${statusInfo.color} flex items-center gap-1 w-fit`}
-                            >
-                              <StatusIcon
-                                className={`h-3 w-3 ${
-                                  imp.status === "processing" ? "animate-spin" : ""
-                                }`}
-                              />
+                            <Badge className={`${statusInfo.color} flex items-center gap-1 w-fit`}>
+                              <StatusIcon className={`h-3 w-3 ${imp.status === "processing" ? "animate-spin" : ""}`} />
                               {statusInfo.label}
                             </Badge>
                             {imp.errorMessage && (
@@ -447,9 +397,7 @@ export function ImportManager({ siteId, disabled }: ImportManagerProps) {
                             )}
                           </div>
                         </TableCell>
-                        <TableCell className="text-right">
-                          {imp.importedEvents.toLocaleString()}
-                        </TableCell>
+                        <TableCell className="text-right">{imp.importedEvents.toLocaleString()}</TableCell>
                         <TableCell className="text-right">
                           {(imp.status === "completed" || imp.status === "failed") && (
                             <Button
@@ -483,15 +431,13 @@ export function ImportManager({ siteId, disabled }: ImportManagerProps) {
           <AlertDialogHeader>
             <AlertDialogTitle>Confirm Large File Import</AlertDialogTitle>
             <AlertDialogDescription>
-              You're about to import a large file.
-              This may take several minutes to process. Are you sure you want to continue?
+              You're about to import a large file. This may take several minutes to process. Are you sure you want to
+              continue?
             </AlertDialogDescription>
           </AlertDialogHeader>
           <AlertDialogFooter>
             <AlertDialogCancel>Cancel</AlertDialogCancel>
-            <AlertDialogAction onClick={handleImport}>
-              Yes, Import File
-            </AlertDialogAction>
+            <AlertDialogAction onClick={handleImport}>Yes, Import File</AlertDialogAction>
           </AlertDialogFooter>
         </AlertDialogContent>
       </AlertDialog>
@@ -502,8 +448,8 @@ export function ImportManager({ siteId, disabled }: ImportManagerProps) {
           <AlertDialogHeader>
             <AlertDialogTitle>Delete Import</AlertDialogTitle>
             <AlertDialogDescription>
-              Are you sure you want to delete this import? This action cannot be undone.
-              The import data and associated files will be permanently removed.
+              Are you sure you want to delete this import? This action cannot be undone. The import data and associated
+              files will be permanently removed.
             </AlertDialogDescription>
           </AlertDialogHeader>
           <AlertDialogFooter>

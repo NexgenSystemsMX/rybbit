@@ -3,20 +3,19 @@ import { getUserHasAdminAccessToSite } from "../../lib/auth-utils.js";
 import { ImportStatusManager } from "../../services/import/importStatusManager.js";
 import { z } from "zod";
 
-const getSiteImportsRequestSchema = z.object({
-  params: z.object({
-    site: z.string().min(1),
-  }),
-}).strict();
+const getSiteImportsRequestSchema = z
+  .object({
+    params: z.object({
+      site: z.string().min(1),
+    }),
+  })
+  .strict();
 
 type GetSiteImportsRequest = {
   Params: z.infer<typeof getSiteImportsRequestSchema.shape.params>;
 };
 
-export async function getSiteImports(
-  request: FastifyRequest<GetSiteImportsRequest>,
-  reply: FastifyReply,
-) {
+export async function getSiteImports(request: FastifyRequest<GetSiteImportsRequest>, reply: FastifyReply) {
   try {
     const parsed = getSiteImportsRequestSchema.safeParse({
       params: request.params,
@@ -44,7 +43,7 @@ export async function getSiteImports(
         errorMessage: imp.errorMessage,
         startedAt: imp.startedAt,
         fileName: imp.fileName,
-      }))
+      })),
     });
   } catch (error) {
     console.error("Error fetching imports:", error);

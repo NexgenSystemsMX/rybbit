@@ -22,21 +22,25 @@ const getImportDataHeaders = (source: string) => {
 const createR2FileStream = async (storageLocation: string, source: string) => {
   console.log(`[CSV Parser] Reading from R2: ${storageLocation}`);
   const fileStream = await r2Storage.getImportFileStream(storageLocation);
-  return fileStream.pipe(parse({
-    headers: getImportDataHeaders(source),
-    renameHeaders: true,
-    ignoreEmpty: true,
-  }));
+  return fileStream.pipe(
+    parse({
+      headers: getImportDataHeaders(source),
+      renameHeaders: true,
+      ignoreEmpty: true,
+    })
+  );
 };
 
 const createLocalFileStream = async (storageLocation: string, source: string) => {
   console.log(`[CSV Parser] Reading from local disk: ${storageLocation}`);
   await access(storageLocation, constants.F_OK | constants.R_OK);
-  return createReadStream(storageLocation).pipe(parse({
-    headers: getImportDataHeaders(source),
-    renameHeaders: true,
-    ignoreEmpty: true,
-  }));
+  return createReadStream(storageLocation).pipe(
+    parse({
+      headers: getImportDataHeaders(source),
+      renameHeaders: true,
+      ignoreEmpty: true,
+    })
+  );
 };
 
 /**
@@ -49,9 +53,7 @@ const createDateRangeFilter = (startDateStr?: string, endDateStr?: string) => {
     ? DateTime.fromFormat(startDateStr, "yyyy-MM-dd", { zone: "utc" }).startOf("day")
     : null;
 
-  const endDate = endDateStr
-    ? DateTime.fromFormat(endDateStr, "yyyy-MM-dd", { zone: "utc" }).endOf("day")
-    : null;
+  const endDate = endDateStr ? DateTime.fromFormat(endDateStr, "yyyy-MM-dd", { zone: "utc" }).endOf("day") : null;
 
   // Validate parsed dates
   if (startDate && !startDate.isValid) {
@@ -83,11 +85,8 @@ const createDateRangeFilter = (startDateStr?: string, endDateStr?: string) => {
 export async function registerCsvParseWorker() {
   const jobQueue = getJobQueue();
 
-  await jobQueue.work<CsvParseJob>(
-    CSV_PARSE_QUEUE,
-    { batchSize: 1, pollingIntervalSeconds: 10 },
-    async ([job]) => {
-      const { site, importId, source, storageLocation, isR2Storage, organization, startDate, endDate } = job.data;
+  await jobQueue.work<CsvParseJob>(CSV_PARSE_QUEUE, { batchSize: 1, pollingIntervalSeconds: 10 }, async ([job]) => {
+    const { site, importId, source, storageLocation, isR2Storage, organization, startDate, endDate } = job.data;
 
     try {
       const importableEvents = await ImportLimiter.countImportableEvents(organization);
@@ -162,25 +161,22 @@ export async function registerCsvParseWorker() {
         totalChunks: chunksSent,
         allChunksSent: true,
       });
-      } catch (error) {
-        console.error("Error in CSV parse worker:", error);
-        await ImportStatusManager.updateStatus(
-          importId,
-          "failed",
-          error instanceof Error ? error.message : "Unknown error occurred"
-        );
-        throw error;
-      } finally {
-        // Clean up file - don't throw on failure to prevent worker crashes
-        const deleteResult = await deleteImportFile(storageLocation, isR2Storage);
-        if (!deleteResult.success) {
-          console.warn(
-            `[Import ${importId}] File cleanup failed, will remain in storage: ${deleteResult.error}`
-          );
-          // File will be orphaned but import status is already recorded
-          // Could implement a cleanup job here to retry later
-        }
+    } catch (error) {
+      console.error("Error in CSV parse worker:", error);
+      await ImportStatusManager.updateStatus(
+        importId,
+        "failed",
+        error instanceof Error ? error.message : "Unknown error occurred"
+      );
+      throw error;
+    } finally {
+      // Clean up file - don't throw on failure to prevent worker crashes
+      const deleteResult = await deleteImportFile(storageLocation, isR2Storage);
+      if (!deleteResult.success) {
+        console.warn(`[Import ${importId}] File cleanup failed, will remain in storage: ${deleteResult.error}`);
+        // File will be orphaned but import status is already recorded
+        // Could implement a cleanup job here to retry later
       }
     }
-  );
+  });
 }
