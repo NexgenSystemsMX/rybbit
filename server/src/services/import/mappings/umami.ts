@@ -229,13 +229,7 @@ export class UmamiImportMapper {
         device_type: data.device,
         type: data.event_type === "1" ? "pageview" : "custom_event",
         event_name: data.event_type === "1" ? "" : data.event_name,
-        props: JSON.parse("{}"),
-        lcp: null,
-        cls: null,
-        inp: null,
-        fcp: null,
-        ttfb: null,
-        ip: null,
+        props: {},
         import_id: importId,
       });
 
