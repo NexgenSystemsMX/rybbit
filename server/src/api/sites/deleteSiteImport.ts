@@ -2,7 +2,6 @@ import { FastifyReply, FastifyRequest } from "fastify";
 import { z } from "zod";
 import { getUserHasAdminAccessToSite } from "../../lib/auth-utils.js";
 import { getImportById, deleteImport } from "../../services/import/importStatusManager.js";
-import { deleteImportFile, getImportStorageLocation } from "../../services/import/utils.js";
 import { clickhouse } from "../../db/clickhouse/clickhouse.js";
 
 const deleteImportRequestSchema = z
@@ -77,15 +76,6 @@ export async function deleteSiteImport(request: FastifyRequest<DeleteImportReque
       return reply.status(500).send({
         error: "Failed to delete imported events from database",
       });
-    }
-
-    // Delete the import file if it exists
-    // This is best-effort - we don't fail the entire operation if the file is already gone
-    const storage = getImportStorageLocation(importId, importRecord.fileName);
-    try {
-      await deleteImportFile(storage.location, storage.isR2);
-    } catch (deleteError) {
-      console.warn(`Failed to delete import file for ${importId}:`, deleteError);
     }
 
     return reply.send({
