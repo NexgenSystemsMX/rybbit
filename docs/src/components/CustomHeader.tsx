@@ -16,23 +16,42 @@ export function CustomHeader() {
         {/* Logo */}
         <div className="flex items-center">
           <Link href="/" className="flex items-center">
-            <Image src="/rybbit-text.svg" alt="Rybbit" width={100} height={0} style={{ height: "auto" }} className="dark:invert-0 invert" />
+            <Image
+              src="/rybbit-text.svg"
+              alt="Rybbit"
+              width={100}
+              height={0}
+              style={{ height: "auto" }}
+              className="dark:invert-0 invert"
+            />
           </Link>
         </div>
 
         {/* Desktop Navigation */}
         <div className="hidden md:flex md:flex-1 md:justify-center">
           <div className="flex items-center gap-x-6">
-            <Link href="/pricing" className="text-sm font-base text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white transition-colors">
+            <Link
+              href="/pricing"
+              className="text-sm font-base text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white transition-colors"
+            >
               Pricing
             </Link>
-            <Link href="/features" className="text-sm font-base text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white transition-colors">
+            <Link
+              href="/features"
+              className="text-sm font-base text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white transition-colors"
+            >
               Features
             </Link>
-            <Link href="/docs" className="text-sm font-base text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white transition-colors">
+            <Link
+              href="/docs"
+              className="text-sm font-base text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white transition-colors"
+            >
               Docs
             </Link>
-            <Link href="/blog" className="text-sm font-base text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white transition-colors">
+            <Link
+              href="/blog"
+              className="text-sm font-base text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white transition-colors"
+            >
               Blog
             </Link>
           </div>
@@ -74,7 +93,7 @@ export function CustomHeader() {
           <a href="https://app.rybbit.io" target="_blank" rel="noopener noreferrer">
             <button
               onClick={() => trackAdEvent("login", { location: "header" })}
-              className="bg-neutral-200 dark:bg-neutral-800 hover:bg-neutral-300 dark:hover:bg-neutral-700 text-neutral-900 dark:text-white text-sm font-medium px-3 py-1.5 rounded-md border border-neutral-400 dark:border-neutral-600 transform hover:-translate-y-0.5 transition-all duration-200 hover:border-neutral-500 dark:hover:border-neutral-400 focus:outline-none focus:ring-2 focus:ring-neutral-400 focus:ring-opacity-50"
+              className="bg-neutral-200 dark:bg-neutral-800 hover:bg-neutral-300 dark:hover:bg-neutral-700 text-neutral-900 dark:text-white text-sm font-medium px-3 py-1.5 rounded-md transform hover:-translate-y-0.5 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-neutral-400 focus:ring-opacity-50"
             >
               Login
             </button>

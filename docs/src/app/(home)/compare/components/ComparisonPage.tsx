@@ -83,7 +83,7 @@ export function ComparisonPage({ competitorName, sections, comparisonContent }: 
               target="_blank"
               rel="noopener noreferrer"
               eventProps={{ location: "hero", button_text: "Live demo" }}
-              className="w-full sm:w-auto bg-neutral-200 dark:bg-neutral-800 hover:bg-neutral-300 dark:hover:bg-neutral-700 text-neutral-900 dark:text-white font-medium px-5 py-3 rounded-lg border border-neutral-400 dark:border-neutral-600 transform hover:-translate-y-0.5 transition-all duration-200 hover:border-neutral-500 dark:hover:border-neutral-400 focus:outline-none focus:ring-2 focus:ring-neutral-400 focus:ring-opacity-50 cursor-pointer"
+              className="w-full sm:w-auto bg-neutral-200 dark:bg-neutral-800 hover:bg-neutral-300 dark:hover:bg-neutral-700 text-neutral-900 dark:text-white font-medium px-5 py-3 rounded-lg transform hover:-translate-y-0.5 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-neutral-400 focus:ring-opacity-50 cursor-pointer"
             >
               Live demo
             </TrackedButton>
@@ -139,7 +139,13 @@ export function ComparisonPage({ competitorName, sections, comparisonContent }: 
                   <th className="text-center p-6">
                     <div className="flex flex-col items-center gap-2">
                       <span className="font-semibold">
-                        <Image src="/rybbit-text.svg" alt="Rybbit" width={100} height={27} className="dark:invert-0 invert" />
+                        <Image
+                          src="/rybbit-text.svg"
+                          alt="Rybbit"
+                          width={100}
+                          height={27}
+                          className="dark:invert-0 invert"
+                        />
                       </span>
                     </div>
                   </th>
@@ -155,13 +161,19 @@ export function ComparisonPage({ competitorName, sections, comparisonContent }: 
                   <React.Fragment key={sectionIndex}>
                     <tr>
                       <td colSpan={3} className="px-6 py-4 bg-neutral-200/70 dark:bg-neutral-900/70">
-                        <span className="text-neutral-600 dark:text-neutral-400 text-sm font-medium">{section.title}</span>
+                        <span className="text-neutral-600 dark:text-neutral-400 text-sm font-medium">
+                          {section.title}
+                        </span>
                       </td>
                     </tr>
                     {section.features.map((feature, featureIndex) => (
                       <tr
                         key={`${sectionIndex}-${featureIndex}`}
-                        className={featureIndex < section.features.length - 1 ? "border-b border-neutral-300 dark:border-neutral-800" : ""}
+                        className={
+                          featureIndex < section.features.length - 1
+                            ? "border-b border-neutral-300 dark:border-neutral-800"
+                            : ""
+                        }
                       >
                         <td className="px-6 py-4 text-neutral-700 dark:text-neutral-300 text-sm">{feature.name}</td>
                         <td className="px-6 py-4 text-center text-sm">

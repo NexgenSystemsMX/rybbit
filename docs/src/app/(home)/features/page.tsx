@@ -341,7 +341,7 @@ export default function FeaturesPage() {
                 target="_blank"
                 rel="noopener noreferrer"
                 eventProps={{ location: "features_hero", button_text: "View live demo" }}
-                className="w-full sm:w-auto bg-neutral-200 dark:bg-neutral-800 hover:bg-neutral-300 dark:hover:bg-neutral-700 text-neutral-900 dark:text-white font-medium px-6 py-3 rounded-lg border border-neutral-400 dark:border-neutral-600 transform hover:-translate-y-0.5 transition-all duration-200 hover:border-neutral-500 dark:hover:border-neutral-400 focus:outline-none focus:ring-2 focus:ring-neutral-400 focus:ring-opacity-50 cursor-pointer"
+                className="w-full sm:w-auto bg-neutral-200 dark:bg-neutral-800 hover:bg-neutral-300 dark:hover:bg-neutral-700 text-neutral-900 dark:text-white font-medium px-6 py-3 rounded-lg transform hover:-translate-y-0.5 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-neutral-400 focus:ring-opacity-50 cursor-pointer"
               >
                 Live demo
               </TrackedButton>
@@ -507,7 +507,7 @@ export default function FeaturesPage() {
               Start tracking for free
             </TrackedButton>
             <Link href="/pricing" className="w-full sm:w-auto">
-              <button className="w-full sm:w-auto bg-neutral-200 dark:bg-neutral-800 hover:bg-neutral-300 dark:hover:bg-neutral-700 text-neutral-900 dark:text-white font-medium px-8 py-4 rounded-lg border border-neutral-400 dark:border-neutral-600 transform hover:-translate-y-0.5 transition-all duration-200 hover:border-neutral-500 dark:hover:border-neutral-400 focus:outline-none focus:ring-2 focus:ring-neutral-400 focus:ring-opacity-50 flex items-center justify-center gap-2">
+              <button className="w-full sm:w-auto bg-neutral-200 dark:bg-neutral-800 hover:bg-neutral-300 dark:hover:bg-neutral-700 text-neutral-900 dark:text-white font-medium px-8 py-4 rounded-lg transform hover:-translate-y-0.5 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-neutral-400 focus:ring-opacity-50 flex items-center justify-center gap-2">
                 View pricing
                 <ArrowRight className="w-4 h-4" />
               </button>
