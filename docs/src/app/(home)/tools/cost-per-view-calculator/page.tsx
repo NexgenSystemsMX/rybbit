@@ -9,8 +9,7 @@ export const metadata: Metadata = {
     "Calculate cost per view for video ads instantly with our free CPV calculator. Compare across platforms, optimize video ad spend, and improve engagement.",
   openGraph: {
     title: "Free Cost Per View (CPV) Calculator",
-    description:
-      "Calculate and optimize your video advertising CPV with platform-specific benchmarks",
+    description: "Calculate and optimize your video advertising CPV with platform-specific benchmarks",
     type: "website",
     url: "https://rybbit.com/tools/cost-per-view-calculator",
     siteName: "Rybbit Documentation",
@@ -31,8 +30,7 @@ const structuredData = {
     {
       "@type": "WebApplication",
       name: "Cost Per View Calculator",
-      description:
-        "Free CPV calculator to measure video advertising costs and compare against platform benchmarks",
+      description: "Free CPV calculator to measure video advertising costs and compare against platform benchmarks",
       url: "https://rybbit.com/tools/cost-per-view-calculator",
       applicationCategory: "BusinessApplication",
       operatingSystem: "Any",
@@ -84,23 +82,19 @@ const structuredData = {
 
 const educationalContent = (
   <>
-    <h2 className="text-2xl font-bold text-neutral-900 dark:text-white mb-4">
-      What is Cost Per View (CPV)?
-    </h2>
+    <h2 className="text-2xl font-bold text-neutral-900 dark:text-white mb-4">What is Cost Per View (CPV)?</h2>
     <p className="text-neutral-700 dark:text-neutral-300 leading-relaxed mb-4">
-      Cost Per View (CPV) is a video advertising metric that measures how much you pay each
-      time someone views your video ad. It's the primary pricing model for video advertising
-      campaigns on platforms like YouTube, Facebook, TikTok, and other social media networks.
+      Cost Per View (CPV) is a video advertising metric that measures how much you pay each time someone views your
+      video ad. It's the primary pricing model for video advertising campaigns on platforms like YouTube, Facebook,
+      TikTok, and other social media networks.
     </p>
     <p className="text-neutral-700 dark:text-neutral-300 leading-relaxed mb-6">
-      Understanding CPV is essential for evaluating video ad campaign efficiency, comparing
-      platform performance, and optimizing your video marketing budget. Unlike impressions
-      (which count displays), views indicate actual engagement with your video content.
+      Understanding CPV is essential for evaluating video ad campaign efficiency, comparing platform performance, and
+      optimizing your video marketing budget. Unlike impressions (which count displays), views indicate actual
+      engagement with your video content.
     </p>
 
-    <h3 className="text-xl font-semibold text-neutral-900 dark:text-white mb-3">
-      How to Calculate CPV
-    </h3>
+    <h3 className="text-xl font-semibold text-neutral-900 dark:text-white mb-3">How to Calculate CPV</h3>
     <div className="bg-neutral-50 dark:bg-neutral-900/50 border border-neutral-200 dark:border-neutral-800 rounded-lg p-6 mb-6">
       <div className="text-center mb-4">
         <div className="text-2xl font-bold text-emerald-600 dark:text-emerald-400">
@@ -111,231 +105,127 @@ const educationalContent = (
         <p>
           <strong>Example:</strong> If you spent $1,000 and received 15,000 video views:
         </p>
-        <p className="text-center font-mono">
-          CPV = $1,000 ÷ 15,000 = $0.067 (6.7 cents per view)
-        </p>
+        <p className="text-center font-mono">CPV = $1,000 ÷ 15,000 = $0.067 (6.7 cents per view)</p>
       </div>
     </div>
 
-    <h3 className="text-xl font-semibold text-neutral-900 dark:text-white mb-3">
-      Platform Benchmarks
-    </h3>
+    <h3 className="text-xl font-semibold text-neutral-900 dark:text-white mb-3">Platform Benchmarks</h3>
     <ul className="space-y-2 mb-6">
-      <li className="flex items-start text-neutral-700 dark:text-neutral-300">
-        
-        <span>
-          <strong>Facebook Video:</strong> $0.02 (lowest CPV, broad reach)
-        </span>
+      <li className="text-neutral-700 dark:text-neutral-300">
+        <strong>Facebook Video:</strong> $0.02 (lowest CPV, broad reach)
       </li>
-      <li className="flex items-start text-neutral-700 dark:text-neutral-300">
-        
-        <span>
-          <strong>Twitter Video:</strong> $0.03 (real-time engagement)
-        </span>
+      <li className="text-neutral-700 dark:text-neutral-300">
+        <strong>Twitter Video:</strong> $0.03 (real-time engagement)
       </li>
-      <li className="flex items-start text-neutral-700 dark:text-neutral-300">
-        
-        <span>
-          <strong>Pinterest Video:</strong> $0.04 (visual discovery)
-        </span>
+      <li className="text-neutral-700 dark:text-neutral-300">
+        <strong>Pinterest Video:</strong> $0.04 (visual discovery)
       </li>
-      <li className="flex items-start text-neutral-700 dark:text-neutral-300">
-        
-        <span>
-          <strong>Instagram Video:</strong> $0.05 (high engagement)
-        </span>
+      <li className="text-neutral-700 dark:text-neutral-300">
+        <strong>Instagram Video:</strong> $0.05 (high engagement)
       </li>
-      <li className="flex items-start text-neutral-700 dark:text-neutral-300">
-        
-        <span>
-          <strong>YouTube:</strong> $0.06 (search and discovery)
-        </span>
+      <li className="text-neutral-700 dark:text-neutral-300">
+        <strong>YouTube:</strong> $0.06 (search and discovery)
       </li>
-      <li className="flex items-start text-neutral-700 dark:text-neutral-300">
-        
-        <span>
-          <strong>TikTok:</strong> $0.07 (younger demographics)
-        </span>
+      <li className="text-neutral-700 dark:text-neutral-300">
+        <strong>TikTok:</strong> $0.07 (younger demographics)
       </li>
-      <li className="flex items-start text-neutral-700 dark:text-neutral-300">
-        
-        <span>
-          <strong>Snapchat:</strong> $0.08 (Gen Z focused)
-        </span>
+      <li className="text-neutral-700 dark:text-neutral-300">
+        <strong>Snapchat:</strong> $0.08 (Gen Z focused)
       </li>
-      <li className="flex items-start text-neutral-700 dark:text-neutral-300">
-        
-        <span>
-          <strong>LinkedIn Video:</strong> $0.15 (B2B targeting premium)
-        </span>
+      <li className="text-neutral-700 dark:text-neutral-300">
+        <strong>LinkedIn Video:</strong> $0.15 (B2B targeting premium)
       </li>
     </ul>
 
-    <h3 className="text-xl font-semibold text-neutral-900 dark:text-white mb-3">
-      Why CPV Matters
-    </h3>
+    <h3 className="text-xl font-semibold text-neutral-900 dark:text-white mb-3">Why CPV Matters</h3>
     <ul className="space-y-2 mb-6">
-      <li className="flex items-start text-neutral-700 dark:text-neutral-300">
-        
-        <span>
-          <strong>Measure engagement:</strong> Views indicate actual interest, not just ad
-          exposure
-        </span>
+      <li className="text-neutral-700 dark:text-neutral-300">
+        <strong>Measure engagement:</strong> Views indicate actual interest, not just ad exposure
       </li>
-      <li className="flex items-start text-neutral-700 dark:text-neutral-300">
-        
-        <span>
-          <strong>Platform comparison:</strong> Identify which platforms deliver the most
-          cost-effective video engagement
-        </span>
+      <li className="text-neutral-700 dark:text-neutral-300">
+        <strong>Platform comparison:</strong> Identify which platforms deliver the most cost-effective video engagement
       </li>
-      <li className="flex items-start text-neutral-700 dark:text-neutral-300">
-        
-        <span>
-          <strong>Budget optimization:</strong> Allocate video ad spend to highest-performing
-          platforms
-        </span>
+      <li className="text-neutral-700 dark:text-neutral-300">
+        <strong>Budget optimization:</strong> Allocate video ad spend to highest-performing platforms
       </li>
-      <li className="flex items-start text-neutral-700 dark:text-neutral-300">
-        
-        <span>
-          <strong>Content effectiveness:</strong> Lower CPV suggests more engaging,
-          well-targeted video content
-        </span>
+      <li className="text-neutral-700 dark:text-neutral-300">
+        <strong>Content effectiveness:</strong> Lower CPV suggests more engaging, well-targeted video content
       </li>
     </ul>
 
-    <h3 className="text-xl font-semibold text-neutral-900 dark:text-white mb-3">
-      What Counts as a View?
-    </h3>
-    <p className="text-neutral-700 dark:text-neutral-300 leading-relaxed mb-4">
-      View definitions vary by platform:
-    </p>
+    <h3 className="text-xl font-semibold text-neutral-900 dark:text-white mb-3">What Counts as a View?</h3>
+    <p className="text-neutral-700 dark:text-neutral-300 leading-relaxed mb-4">View definitions vary by platform:</p>
     <ul className="space-y-2 mb-6">
-      <li className="flex items-start text-neutral-700 dark:text-neutral-300">
-        
-        <span>
-          <strong>YouTube:</strong> 30 seconds (or full video if shorter) or when user
-          interacts
-        </span>
+      <li className="text-neutral-700 dark:text-neutral-300">
+        <strong>YouTube:</strong> 30 seconds (or full video if shorter) or when user interacts
       </li>
-      <li className="flex items-start text-neutral-700 dark:text-neutral-300">
-        
-        <span>
-          <strong>Facebook/Instagram:</strong> 3 seconds of continuous play (for reach), 10
-          seconds for ThruPlay
-        </span>
+      <li className="text-neutral-700 dark:text-neutral-300">
+        <strong>Facebook/Instagram:</strong> 3 seconds of continuous play (for reach), 10 seconds for ThruPlay
       </li>
-      <li className="flex items-start text-neutral-700 dark:text-neutral-300">
-        
-        <span>
-          <strong>TikTok:</strong> 6 seconds or full video if shorter, with video 50%+ on
-          screen
-        </span>
+      <li className="text-neutral-700 dark:text-neutral-300">
+        <strong>TikTok:</strong> 6 seconds or full video if shorter, with video 50%+ on screen
       </li>
-      <li className="flex items-start text-neutral-700 dark:text-neutral-300">
-        
-        <span>
-          <strong>LinkedIn:</strong> 2 seconds with at least 50% of video on screen
-        </span>
+      <li className="text-neutral-700 dark:text-neutral-300">
+        <strong>LinkedIn:</strong> 2 seconds with at least 50% of video on screen
       </li>
     </ul>
 
-    <h3 className="text-xl font-semibold text-neutral-900 dark:text-white mb-3">
-      How to Lower Your CPV
-    </h3>
+    <h3 className="text-xl font-semibold text-neutral-900 dark:text-white mb-3">How to Lower Your CPV</h3>
     <ol className="space-y-3 mb-6 list-decimal list-inside text-neutral-700 dark:text-neutral-300">
       <li>
-        <strong>Create engaging content:</strong> Hook viewers in the first 3 seconds with
-        compelling visuals and messaging
+        <strong>Create engaging content:</strong> Hook viewers in the first 3 seconds with compelling visuals and
+        messaging
       </li>
       <li>
-        <strong>Improve targeting:</strong> Reach audiences more likely to watch and engage
-        with your content
+        <strong>Improve targeting:</strong> Reach audiences more likely to watch and engage with your content
       </li>
       <li>
-        <strong>Optimize video length:</strong> Test different durations to find the sweet
-        spot for your audience
+        <strong>Optimize video length:</strong> Test different durations to find the sweet spot for your audience
       </li>
       <li>
-        <strong>Test formats:</strong> Try different aspect ratios, styles, and placements
-        (feed vs. stories)
+        <strong>Test formats:</strong> Try different aspect ratios, styles, and placements (feed vs. stories)
       </li>
       <li>
-        <strong>Choose cost-effective platforms:</strong> Match platforms to your target
-        demographic and budget
+        <strong>Choose cost-effective platforms:</strong> Match platforms to your target demographic and budget
       </li>
       <li>
-        <strong>Use captions:</strong> 85% of Facebook video is watched without sound—make
-        content accessible
+        <strong>Use captions:</strong> 85% of Facebook video is watched without sound—make content accessible
       </li>
     </ol>
 
-    <h3 className="text-xl font-semibold text-neutral-900 dark:text-white mb-3">
-      CPV vs Other Video Metrics
-    </h3>
+    <h3 className="text-xl font-semibold text-neutral-900 dark:text-white mb-3">CPV vs Other Video Metrics</h3>
     <p className="text-neutral-700 dark:text-neutral-300 leading-relaxed mb-4">
       Understanding related video advertising metrics provides a complete picture:
     </p>
     <ul className="space-y-2 mb-6">
-      <li className="flex items-start text-neutral-700 dark:text-neutral-300">
-        
-        <span>
-          <strong>CPV (Cost Per View):</strong> Cost for someone to watch your video
-        </span>
+      <li className="text-neutral-700 dark:text-neutral-300">
+        <strong>CPV (Cost Per View):</strong> Cost for someone to watch your video
       </li>
-      <li className="flex items-start text-neutral-700 dark:text-neutral-300">
-        
-        <span>
-          <strong>VTR (View-Through Rate):</strong> Percentage of impressions that become
-          views
-        </span>
+      <li className="text-neutral-700 dark:text-neutral-300">
+        <strong>VTR (View-Through Rate):</strong> Percentage of impressions that become views
       </li>
-      <li className="flex items-start text-neutral-700 dark:text-neutral-300">
-        
-        <span>
-          <strong>Video Completion Rate:</strong> Percentage of viewers who watch the entire
-          video
-        </span>
+      <li className="text-neutral-700 dark:text-neutral-300">
+        <strong>Video Completion Rate:</strong> Percentage of viewers who watch the entire video
       </li>
-      <li className="flex items-start text-neutral-700 dark:text-neutral-300">
-        
-        <span>
-          <strong>Engagement Rate:</strong> Likes, comments, shares relative to views
-        </span>
+      <li className="text-neutral-700 dark:text-neutral-300">
+        <strong>Engagement Rate:</strong> Likes, comments, shares relative to views
       </li>
     </ul>
 
-    <h3 className="text-xl font-semibold text-neutral-900 dark:text-white mb-3">
-      When to Use CPV Bidding
-    </h3>
-    <p className="text-neutral-700 dark:text-neutral-300 leading-relaxed mb-4">
-      CPV bidding works best for:
-    </p>
+    <h3 className="text-xl font-semibold text-neutral-900 dark:text-white mb-3">When to Use CPV Bidding</h3>
+    <p className="text-neutral-700 dark:text-neutral-300 leading-relaxed mb-4">CPV bidding works best for:</p>
     <ul className="space-y-2 mb-6">
-      <li className="flex items-start text-neutral-700 dark:text-neutral-300">
-        
-        <span>
-          <strong>Brand awareness campaigns:</strong> Maximize video views and brand exposure
-        </span>
+      <li className="text-neutral-700 dark:text-neutral-300">
+        <strong>Brand awareness campaigns:</strong> Maximize video views and brand exposure
       </li>
-      <li className="flex items-start text-neutral-700 dark:text-neutral-300">
-        
-        <span>
-          <strong>Product launches:</strong> Introduce new products with engaging video content
-        </span>
+      <li className="text-neutral-700 dark:text-neutral-300">
+        <strong>Product launches:</strong> Introduce new products with engaging video content
       </li>
-      <li className="flex items-start text-neutral-700 dark:text-neutral-300">
-        
-        <span>
-          <strong>Educational content:</strong> Share tutorials, demos, or explainer videos
-        </span>
+      <li className="text-neutral-700 dark:text-neutral-300">
+        <strong>Educational content:</strong> Share tutorials, demos, or explainer videos
       </li>
-      <li className="flex items-start text-neutral-700 dark:text-neutral-300">
-        
-        <span>
-          <strong>Storytelling:</strong> Build emotional connections through narrative content
-        </span>
+      <li className="text-neutral-700 dark:text-neutral-300">
+        <strong>Storytelling:</strong> Build emotional connections through narrative content
       </li>
     </ul>
   </>
@@ -378,9 +268,8 @@ const faqs = [
         >
           CPM
         </Link>{" "}
-        (Cost Per Mille) charges per 1,000 impressions regardless of whether viewers watch.
-        CPV is better for engagement-focused campaigns, while CPM is better for broad
-        awareness.
+        (Cost Per Mille) charges per 1,000 impressions regardless of whether viewers watch. CPV is better for
+        engagement-focused campaigns, while CPM is better for broad awareness.
       </>
     ),
   },

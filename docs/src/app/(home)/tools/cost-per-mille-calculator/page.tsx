@@ -9,8 +9,7 @@ export const metadata: Metadata = {
     "Calculate CPM (cost per thousand impressions) instantly with our free calculator. Compare across platforms, optimize ad spend, and improve campaign efficiency.",
   openGraph: {
     title: "Free CPM Calculator (Cost Per Mille)",
-    description:
-      "Calculate and optimize your CPM with platform-specific benchmarks",
+    description: "Calculate and optimize your CPM with platform-specific benchmarks",
     type: "website",
     url: "https://rybbit.com/tools/cost-per-mille-calculator",
     siteName: "Rybbit Documentation",
@@ -84,24 +83,19 @@ const structuredData = {
 
 const educationalContent = (
   <>
-    <h2 className="text-2xl font-bold text-neutral-900 dark:text-white mb-4">
-      What is CPM (Cost Per Mille)?
-    </h2>
+    <h2 className="text-2xl font-bold text-neutral-900 dark:text-white mb-4">What is CPM (Cost Per Mille)?</h2>
     <p className="text-neutral-700 dark:text-neutral-300 leading-relaxed mb-4">
-      CPM, or Cost Per Mille, measures the cost of 1,000 advertising impressions. The term
-      "mille" comes from Latin, meaning "thousand." It's a fundamental metric in display
-      advertising that helps marketers understand how efficiently they're reaching their
-      audience.
+      CPM, or Cost Per Mille, measures the cost of 1,000 advertising impressions. The term "mille" comes from Latin,
+      meaning "thousand." It's a fundamental metric in display advertising that helps marketers understand how
+      efficiently they're reaching their audience.
     </p>
     <p className="text-neutral-700 dark:text-neutral-300 leading-relaxed mb-6">
-      CPM is particularly useful for brand awareness campaigns where the goal is maximum
-      visibility rather than immediate conversions. It allows you to compare costs across
-      different platforms, ad formats, and campaigns on an apples-to-apples basis.
+      CPM is particularly useful for brand awareness campaigns where the goal is maximum visibility rather than
+      immediate conversions. It allows you to compare costs across different platforms, ad formats, and campaigns on an
+      apples-to-apples basis.
     </p>
 
-    <h3 className="text-xl font-semibold text-neutral-900 dark:text-white mb-3">
-      How to Calculate CPM
-    </h3>
+    <h3 className="text-xl font-semibold text-neutral-900 dark:text-white mb-3">How to Calculate CPM</h3>
     <div className="bg-neutral-50 dark:bg-neutral-900/50 border border-neutral-200 dark:border-neutral-800 rounded-lg p-6 mb-6">
       <div className="text-center mb-4">
         <div className="text-2xl font-bold text-emerald-600 dark:text-emerald-400">
@@ -117,163 +111,94 @@ const educationalContent = (
       </div>
     </div>
 
-    <h3 className="text-xl font-semibold text-neutral-900 dark:text-white mb-3">
-      Platform Benchmarks
-    </h3>
+    <h3 className="text-xl font-semibold text-neutral-900 dark:text-white mb-3">Platform Benchmarks</h3>
     <ul className="space-y-2 mb-6">
-      <li className="flex items-start text-neutral-700 dark:text-neutral-300">
-        
-        <span>
-          <strong>Google Search:</strong> $38.40 (high intent, competitive)
-        </span>
+      <li className="text-neutral-700 dark:text-neutral-300">
+        <strong>Google Search:</strong> $38.40 (high intent, competitive)
       </li>
-      <li className="flex items-start text-neutral-700 dark:text-neutral-300">
-        
-        <span>
-          <strong>LinkedIn:</strong> $33.80 (B2B targeting premium)
-        </span>
+      <li className="text-neutral-700 dark:text-neutral-300">
+        <strong>LinkedIn:</strong> $33.80 (B2B targeting premium)
       </li>
-      <li className="flex items-start text-neutral-700 dark:text-neutral-300">
-        
-        <span>
-          <strong>Pinterest:</strong> $30.00 (visual discovery)
-        </span>
+      <li className="text-neutral-700 dark:text-neutral-300">
+        <strong>Pinterest:</strong> $30.00 (visual discovery)
       </li>
-      <li className="flex items-start text-neutral-700 dark:text-neutral-300">
-        
-        <span>
-          <strong>Facebook Feed:</strong> $11.20 (broad reach)
-        </span>
+      <li className="text-neutral-700 dark:text-neutral-300">
+        <strong>Facebook Feed:</strong> $11.20 (broad reach)
       </li>
-      <li className="flex items-start text-neutral-700 dark:text-neutral-300">
-        
-        <span>
-          <strong>YouTube:</strong> $9.68 (video content)
-        </span>
+      <li className="text-neutral-700 dark:text-neutral-300">
+        <strong>YouTube:</strong> $9.68 (video content)
       </li>
-      <li className="flex items-start text-neutral-700 dark:text-neutral-300">
-        
-        <span>
-          <strong>TikTok:</strong> $9.42 (younger demographics)
-        </span>
+      <li className="text-neutral-700 dark:text-neutral-300">
+        <strong>TikTok:</strong> $9.42 (younger demographics)
       </li>
-      <li className="flex items-start text-neutral-700 dark:text-neutral-300">
-        
-        <span>
-          <strong>Instagram Feed:</strong> $7.91 (visual engagement)
-        </span>
+      <li className="text-neutral-700 dark:text-neutral-300">
+        <strong>Instagram Feed:</strong> $7.91 (visual engagement)
       </li>
-      <li className="flex items-start text-neutral-700 dark:text-neutral-300">
-        
-        <span>
-          <strong>Instagram Stories:</strong> $6.70 (ephemeral content)
-        </span>
+      <li className="text-neutral-700 dark:text-neutral-300">
+        <strong>Instagram Stories:</strong> $6.70 (ephemeral content)
       </li>
-      <li className="flex items-start text-neutral-700 dark:text-neutral-300">
-        
-        <span>
-          <strong>Twitter:</strong> $6.46 (real-time engagement)
-        </span>
+      <li className="text-neutral-700 dark:text-neutral-300">
+        <strong>Twitter:</strong> $6.46 (real-time engagement)
       </li>
-      <li className="flex items-start text-neutral-700 dark:text-neutral-300">
-        
-        <span>
-          <strong>Google Display:</strong> $2.80 (broad awareness)
-        </span>
+      <li className="text-neutral-700 dark:text-neutral-300">
+        <strong>Google Display:</strong> $2.80 (broad awareness)
       </li>
     </ul>
 
-    <h3 className="text-xl font-semibold text-neutral-900 dark:text-white mb-3">
-      Why CPM Matters
-    </h3>
+    <h3 className="text-xl font-semibold text-neutral-900 dark:text-white mb-3">Why CPM Matters</h3>
     <ul className="space-y-2 mb-6">
-      <li className="flex items-start text-neutral-700 dark:text-neutral-300">
-        
-        <span>
-          <strong>Compare platforms:</strong> Evaluate cost efficiency across different
-          advertising channels
-        </span>
+      <li className="text-neutral-700 dark:text-neutral-300">
+        <strong>Compare platforms:</strong> Evaluate cost efficiency across different advertising channels
       </li>
-      <li className="flex items-start text-neutral-700 dark:text-neutral-300">
-        
-        <span>
-          <strong>Budget allocation:</strong> Determine where to invest for maximum reach
-        </span>
+      <li className="text-neutral-700 dark:text-neutral-300">
+        <strong>Budget allocation:</strong> Determine where to invest for maximum reach
       </li>
-      <li className="flex items-start text-neutral-700 dark:text-neutral-300">
-        
-        <span>
-          <strong>Campaign planning:</strong> Forecast impressions and reach for given budgets
-        </span>
+      <li className="text-neutral-700 dark:text-neutral-300">
+        <strong>Campaign planning:</strong> Forecast impressions and reach for given budgets
       </li>
-      <li className="flex items-start text-neutral-700 dark:text-neutral-300">
-        
-        <span>
-          <strong>Performance tracking:</strong> Monitor how costs change over time and across
-          campaigns
-        </span>
+      <li className="text-neutral-700 dark:text-neutral-300">
+        <strong>Performance tracking:</strong> Monitor how costs change over time and across campaigns
       </li>
     </ul>
 
-    <h3 className="text-xl font-semibold text-neutral-900 dark:text-white mb-3">
-      How to Lower Your CPM
-    </h3>
+    <h3 className="text-xl font-semibold text-neutral-900 dark:text-white mb-3">How to Lower Your CPM</h3>
     <ol className="space-y-3 mb-6 list-decimal list-inside text-neutral-700 dark:text-neutral-300">
       <li>
-        <strong>Improve ad quality:</strong> Higher relevance scores on platforms like Facebook
-        and Google reduce CPM
+        <strong>Improve ad quality:</strong> Higher relevance scores on platforms like Facebook and Google reduce CPM
       </li>
       <li>
         <strong>Refine targeting:</strong> Narrow audiences to more engaged, relevant users
       </li>
       <li>
-        <strong>Test ad formats:</strong> Some formats (Stories, Reels) often have lower CPMs
-        than feed placements
+        <strong>Test ad formats:</strong> Some formats (Stories, Reels) often have lower CPMs than feed placements
       </li>
       <li>
-        <strong>Optimize bid strategy:</strong> Use automatic bidding or target CPM bidding to
-        find efficiency
+        <strong>Optimize bid strategy:</strong> Use automatic bidding or target CPM bidding to find efficiency
       </li>
       <li>
-        <strong>Choose the right platform:</strong> Match platforms to your audience
-        demographics and campaign goals
+        <strong>Choose the right platform:</strong> Match platforms to your audience demographics and campaign goals
       </li>
       <li>
         <strong>Avoid peak times:</strong> Run ads during less competitive hours or seasons
       </li>
     </ol>
 
-    <h3 className="text-xl font-semibold text-neutral-900 dark:text-white mb-3">
-      CPM vs Other Pricing Models
-    </h3>
+    <h3 className="text-xl font-semibold text-neutral-900 dark:text-white mb-3">CPM vs Other Pricing Models</h3>
     <p className="text-neutral-700 dark:text-neutral-300 leading-relaxed mb-4">
       Understanding different ad pricing models helps choose the right approach:
     </p>
     <ul className="space-y-2 mb-6">
-      <li className="flex items-start text-neutral-700 dark:text-neutral-300">
-        
-        <span>
-          <strong>CPM (Cost Per Mille):</strong> Best for brand awareness and reach campaigns
-        </span>
+      <li className="text-neutral-700 dark:text-neutral-300">
+        <strong>CPM (Cost Per Mille):</strong> Best for brand awareness and reach campaigns
       </li>
-      <li className="flex items-start text-neutral-700 dark:text-neutral-300">
-        
-        <span>
-          <strong>CPC (Cost Per Click):</strong> Better for traffic and engagement-focused
-          campaigns
-        </span>
+      <li className="text-neutral-700 dark:text-neutral-300">
+        <strong>CPC (Cost Per Click):</strong> Better for traffic and engagement-focused campaigns
       </li>
-      <li className="flex items-start text-neutral-700 dark:text-neutral-300">
-        
-        <span>
-          <strong>CPA (Cost Per Acquisition):</strong> Ideal for conversion-focused campaigns
-        </span>
+      <li className="text-neutral-700 dark:text-neutral-300">
+        <strong>CPA (Cost Per Acquisition):</strong> Ideal for conversion-focused campaigns
       </li>
-      <li className="flex items-start text-neutral-700 dark:text-neutral-300">
-        
-        <span>
-          <strong>CPV (Cost Per View):</strong> Specifically for video advertising campaigns
-        </span>
+      <li className="text-neutral-700 dark:text-neutral-300">
+        <strong>CPV (Cost Per View):</strong> Specifically for video advertising campaigns
       </li>
     </ul>
   </>
@@ -309,9 +234,8 @@ const faqs = [
     question: "When should I use CPM bidding?",
     answer: (
       <>
-        Use CPM bidding for brand awareness campaigns where your goal is maximum visibility and
-        reach rather than immediate clicks or conversions. For conversion-focused campaigns,
-        consider{" "}
+        Use CPM bidding for brand awareness campaigns where your goal is maximum visibility and reach rather than
+        immediate clicks or conversions. For conversion-focused campaigns, consider{" "}
         <Link
           href="/tools/cost-per-acquisition-calculator"
           className="text-emerald-600 dark:text-emerald-400 hover:underline"

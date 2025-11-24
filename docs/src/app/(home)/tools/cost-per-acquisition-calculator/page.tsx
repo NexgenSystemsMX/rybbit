@@ -9,8 +9,7 @@ export const metadata: Metadata = {
     "Calculate your cost per acquisition instantly with our free CPA calculator. Compare against industry benchmarks, optimize your marketing spend, and improve campaign ROI.",
   openGraph: {
     title: "Free Cost Per Acquisition (CPA) Calculator",
-    description:
-      "Calculate and optimize your customer acquisition costs with industry benchmarks",
+    description: "Calculate and optimize your customer acquisition costs with industry benchmarks",
     type: "website",
     url: "https://rybbit.com/tools/cost-per-acquisition-calculator",
     siteName: "Rybbit Documentation",
@@ -31,8 +30,7 @@ const structuredData = {
     {
       "@type": "WebApplication",
       name: "Cost Per Acquisition Calculator",
-      description:
-        "Free CPA calculator to measure customer acquisition costs and compare against industry benchmarks",
+      description: "Free CPA calculator to measure customer acquisition costs and compare against industry benchmarks",
       url: "https://rybbit.com/tools/cost-per-acquisition-calculator",
       applicationCategory: "BusinessApplication",
       operatingSystem: "Any",
@@ -84,24 +82,18 @@ const structuredData = {
 
 const educationalContent = (
   <>
-    <h2 className="text-2xl font-bold text-neutral-900 dark:text-white mb-4">
-      What is Cost Per Acquisition (CPA)?
-    </h2>
+    <h2 className="text-2xl font-bold text-neutral-900 dark:text-white mb-4">What is Cost Per Acquisition (CPA)?</h2>
     <p className="text-neutral-700 dark:text-neutral-300 leading-relaxed mb-4">
-      Cost Per Acquisition (CPA) is a critical marketing metric that measures how much it costs
-      your business to acquire one paying customer through your marketing efforts. It's
-      calculated by dividing your total marketing spend by the number of conversions or
-      acquisitions during a specific period.
+      Cost Per Acquisition (CPA) is a critical marketing metric that measures how much it costs your business to acquire
+      one paying customer through your marketing efforts. It's calculated by dividing your total marketing spend by the
+      number of conversions or acquisitions during a specific period.
     </p>
     <p className="text-neutral-700 dark:text-neutral-300 leading-relaxed mb-6">
-      Understanding your CPA is essential for evaluating marketing campaign effectiveness,
-      allocating budgets efficiently, and ensuring your customer acquisition strategy is
-      profitable and sustainable.
+      Understanding your CPA is essential for evaluating marketing campaign effectiveness, allocating budgets
+      efficiently, and ensuring your customer acquisition strategy is profitable and sustainable.
     </p>
 
-    <h3 className="text-xl font-semibold text-neutral-900 dark:text-white mb-3">
-      How to Calculate CPA
-    </h3>
+    <h3 className="text-xl font-semibold text-neutral-900 dark:text-white mb-3">How to Calculate CPA</h3>
     <div className="bg-neutral-50 dark:bg-neutral-900/50 border border-neutral-200 dark:border-neutral-800 rounded-lg p-6 mb-6">
       <div className="text-center mb-4">
         <div className="text-2xl font-bold text-emerald-600 dark:text-emerald-400">
@@ -110,106 +102,69 @@ const educationalContent = (
       </div>
       <div className="space-y-2 text-sm text-neutral-700 dark:text-neutral-300">
         <p>
-          <strong>Example:</strong> If you spent $10,000 on a campaign and acquired 150
-          customers:
+          <strong>Example:</strong> If you spent $10,000 on a campaign and acquired 150 customers:
         </p>
         <p className="text-center font-mono">CPA = $10,000 ÷ 150 = $66.67 per customer</p>
       </div>
     </div>
 
-    <h3 className="text-xl font-semibold text-neutral-900 dark:text-white mb-3">
-      Industry Benchmarks
-    </h3>
+    <h3 className="text-xl font-semibold text-neutral-900 dark:text-white mb-3">Industry Benchmarks</h3>
     <ul className="space-y-2 mb-6">
-      <li className="flex items-start text-neutral-700 dark:text-neutral-300">
-        
-        <span>
-          <strong>E-commerce:</strong> $45.27 average CPA
-        </span>
+      <li className="text-neutral-700 dark:text-neutral-300">
+        <strong>E-commerce:</strong> $45.27 average CPA
       </li>
-      <li className="flex items-start text-neutral-700 dark:text-neutral-300">
-        
-        <span>
-          <strong>SaaS:</strong> $205 average CPA
-        </span>
+      <li className="text-neutral-700 dark:text-neutral-300">
+        <strong>SaaS:</strong> $205 average CPA
       </li>
-      <li className="flex items-start text-neutral-700 dark:text-neutral-300">
-        
-        <span>
-          <strong>B2B:</strong> $197 average CPA
-        </span>
+      <li className="text-neutral-700 dark:text-neutral-300">
+        <strong>B2B:</strong> $197 average CPA
       </li>
-      <li className="flex items-start text-neutral-700 dark:text-neutral-300">
-        
-        <span>
-          <strong>Finance:</strong> $44 average CPA
-        </span>
+      <li className="text-neutral-700 dark:text-neutral-300">
+        <strong>Finance:</strong> $44 average CPA
       </li>
-      <li className="flex items-start text-neutral-700 dark:text-neutral-300">
-        
-        <span>
-          <strong>Travel:</strong> $7.19 average CPA
-        </span>
+      <li className="text-neutral-700 dark:text-neutral-300">
+        <strong>Travel:</strong> $7.19 average CPA
       </li>
     </ul>
 
-    <h3 className="text-xl font-semibold text-neutral-900 dark:text-white mb-3">
-      Why CPA Matters
-    </h3>
+    <h3 className="text-xl font-semibold text-neutral-900 dark:text-white mb-3">Why CPA Matters</h3>
     <ul className="space-y-2 mb-6">
-      <li className="flex items-start text-neutral-700 dark:text-neutral-300">
-        
-        <span>
-          <strong>Profitability:</strong> Ensures acquisition costs don't exceed customer value
-        </span>
+      <li className="text-neutral-700 dark:text-neutral-300">
+        <strong>Profitability:</strong> Ensures acquisition costs don't exceed customer value
       </li>
-      <li className="flex items-start text-neutral-700 dark:text-neutral-300">
-        
-        <span>
-          <strong>Budget optimization:</strong> Identifies which channels deliver the best ROI
-        </span>
+      <li className="text-neutral-700 dark:text-neutral-300">
+        <strong>Budget optimization:</strong> Identifies which channels deliver the best ROI
       </li>
-      <li className="flex items-start text-neutral-700 dark:text-neutral-300">
-        
-        <span>
-          <strong>Campaign performance:</strong> Measures effectiveness of marketing initiatives
-        </span>
+      <li className="text-neutral-700 dark:text-neutral-300">
+        <strong>Campaign performance:</strong> Measures effectiveness of marketing initiatives
       </li>
-      <li className="flex items-start text-neutral-700 dark:text-neutral-300">
-        
-        <span>
-          <strong>Strategic planning:</strong> Informs scaling decisions and growth strategies
-        </span>
+      <li className="text-neutral-700 dark:text-neutral-300">
+        <strong>Strategic planning:</strong> Informs scaling decisions and growth strategies
       </li>
     </ul>
 
-    <h3 className="text-xl font-semibold text-neutral-900 dark:text-white mb-3">
-      How to Reduce Your CPA
-    </h3>
+    <h3 className="text-xl font-semibold text-neutral-900 dark:text-white mb-3">How to Reduce Your CPA</h3>
     <ol className="space-y-3 mb-6 list-decimal list-inside text-neutral-700 dark:text-neutral-300">
       <li>
-        <strong>Improve targeting:</strong> Focus on high-intent audiences with precise
-        demographic and behavioral targeting
+        <strong>Improve targeting:</strong> Focus on high-intent audiences with precise demographic and behavioral
+        targeting
       </li>
       <li>
-        <strong>Optimize landing pages:</strong> Increase conversion rates with clear CTAs, fast
-        load times, and compelling copy
+        <strong>Optimize landing pages:</strong> Increase conversion rates with clear CTAs, fast load times, and
+        compelling copy
       </li>
       <li>
-        <strong>A/B test creatives:</strong> Continuously test ad variations to improve
-        click-through and conversion rates
+        <strong>A/B test creatives:</strong> Continuously test ad variations to improve click-through and conversion
+        rates
       </li>
       <li>
-        <strong>Refine audience segments:</strong> Exclude low-performing segments and double
-        down on converters
+        <strong>Refine audience segments:</strong> Exclude low-performing segments and double down on converters
       </li>
       <li>
-        <strong>Improve quality scores:</strong> Higher ad relevance reduces costs on platforms
-        like Google Ads
+        <strong>Improve quality scores:</strong> Higher ad relevance reduces costs on platforms like Google Ads
       </li>
       <li>
-        <strong>Leverage retargeting:</strong> Re-engage warm audiences who are more likely to
-        convert at lower costs
+        <strong>Leverage retargeting:</strong> Re-engage warm audiences who are more likely to convert at lower costs
       </li>
     </ol>
   </>
@@ -235,13 +190,10 @@ const faqs = [
     question: "How is CPA different from CPL (Cost Per Lead)?",
     answer: (
       <>
-        CPA measures the cost to acquire a paying customer, while CPL measures the cost to
-        acquire a lead (who may or may not convert). CPA is typically higher than CPL because
-        it accounts for the full conversion funnel. Learn more with our{" "}
-        <Link
-          href="/tools/cost-per-lead-calculator"
-          className="text-emerald-600 dark:text-emerald-400 hover:underline"
-        >
+        CPA measures the cost to acquire a paying customer, while CPL measures the cost to acquire a lead (who may or
+        may not convert). CPA is typically higher than CPL because it accounts for the full conversion funnel. Learn
+        more with our{" "}
+        <Link href="/tools/cost-per-lead-calculator" className="text-emerald-600 dark:text-emerald-400 hover:underline">
           Cost Per Lead Calculator
         </Link>
         .
@@ -257,9 +209,8 @@ const faqs = [
     question: "What's the relationship between CPA and CLV?",
     answer: (
       <>
-        Your CPA should be significantly lower than your Customer Lifetime Value (CLV) to ensure
-        profitability. A common rule is that CLV should be at least 3x your CPA. Calculate your
-        CLV with our{" "}
+        Your CPA should be significantly lower than your Customer Lifetime Value (CLV) to ensure profitability. A common
+        rule is that CLV should be at least 3x your CPA. Calculate your CLV with our{" "}
         <Link
           href="/tools/customer-lifetime-value-calculator"
           className="text-emerald-600 dark:text-emerald-400 hover:underline"

@@ -9,8 +9,7 @@ export const metadata: Metadata = {
     "Calculate cost per lead instantly with our free CPL calculator. Compare across channels, optimize marketing spend, and improve lead generation ROI.",
   openGraph: {
     title: "Free Cost Per Lead (CPL) Calculator",
-    description:
-      "Calculate and optimize your cost per lead with channel-specific benchmarks",
+    description: "Calculate and optimize your cost per lead with channel-specific benchmarks",
     type: "website",
     url: "https://rybbit.com/tools/cost-per-lead-calculator",
     siteName: "Rybbit Documentation",
@@ -31,8 +30,7 @@ const structuredData = {
     {
       "@type": "WebApplication",
       name: "Cost Per Lead Calculator",
-      description:
-        "Free CPL calculator to measure lead generation costs and compare against channel benchmarks",
+      description: "Free CPL calculator to measure lead generation costs and compare against channel benchmarks",
       url: "https://rybbit.com/tools/cost-per-lead-calculator",
       applicationCategory: "BusinessApplication",
       operatingSystem: "Any",
@@ -84,25 +82,19 @@ const structuredData = {
 
 const educationalContent = (
   <>
-    <h2 className="text-2xl font-bold text-neutral-900 dark:text-white mb-4">
-      What is Cost Per Lead (CPL)?
-    </h2>
+    <h2 className="text-2xl font-bold text-neutral-900 dark:text-white mb-4">What is Cost Per Lead (CPL)?</h2>
     <p className="text-neutral-700 dark:text-neutral-300 leading-relaxed mb-4">
-      Cost Per Lead (CPL) measures how much it costs to generate one qualified lead through
-      your marketing efforts. Unlike CPA (Cost Per Acquisition), which measures the cost to
-      acquire a paying customer, CPL focuses on the earlier stage of getting potential
-      customers into your sales funnel.
+      Cost Per Lead (CPL) measures how much it costs to generate one qualified lead through your marketing efforts.
+      Unlike CPA (Cost Per Acquisition), which measures the cost to acquire a paying customer, CPL focuses on the
+      earlier stage of getting potential customers into your sales funnel.
     </p>
     <p className="text-neutral-700 dark:text-neutral-300 leading-relaxed mb-6">
-      Understanding CPL is essential for evaluating lead generation campaigns, comparing
-      channel effectiveness, and optimizing marketing budgets. It's particularly important for
-      B2B businesses and companies with longer sales cycles where leads require nurturing
-      before conversion.
+      Understanding CPL is essential for evaluating lead generation campaigns, comparing channel effectiveness, and
+      optimizing marketing budgets. It's particularly important for B2B businesses and companies with longer sales
+      cycles where leads require nurturing before conversion.
     </p>
 
-    <h3 className="text-xl font-semibold text-neutral-900 dark:text-white mb-3">
-      How to Calculate CPL
-    </h3>
+    <h3 className="text-xl font-semibold text-neutral-900 dark:text-white mb-3">How to Calculate CPL</h3>
     <div className="bg-neutral-50 dark:bg-neutral-900/50 border border-neutral-200 dark:border-neutral-800 rounded-lg p-6 mb-6">
       <div className="text-center mb-4">
         <div className="text-2xl font-bold text-emerald-600 dark:text-emerald-400">
@@ -117,103 +109,53 @@ const educationalContent = (
       </div>
     </div>
 
-    <h3 className="text-xl font-semibold text-neutral-900 dark:text-white mb-3">
-      Channel Benchmarks
-    </h3>
+    <h3 className="text-xl font-semibold text-neutral-900 dark:text-white mb-3">Channel Benchmarks</h3>
     <ul className="space-y-2 mb-6">
-      <li className="flex items-start text-neutral-700 dark:text-neutral-300">
-        
-        <span>
-          <strong>SEO/Organic:</strong> $31 (highest ROI long-term)
-        </span>
+      <li className="text-neutral-700 dark:text-neutral-300">
+        <strong>SEO/Organic:</strong> $31 (highest ROI long-term)
       </li>
-      <li className="flex items-start text-neutral-700 dark:text-neutral-300">
-        
-        <span>
-          <strong>Email Marketing:</strong> $53 (low cost, existing audience)
-        </span>
+      <li className="text-neutral-700 dark:text-neutral-300">
+        <strong>Email Marketing:</strong> $53 (low cost, existing audience)
       </li>
-      <li className="flex items-start text-neutral-700 dark:text-neutral-300">
-        
-        <span>
-          <strong>Webinars:</strong> $72 (high engagement)
-        </span>
+      <li className="text-neutral-700 dark:text-neutral-300">
+        <strong>Webinars:</strong> $72 (high engagement)
       </li>
-      <li className="flex items-start text-neutral-700 dark:text-neutral-300">
-        
-        <span>
-          <strong>LinkedIn Ads:</strong> $75 (B2B targeting)
-        </span>
+      <li className="text-neutral-700 dark:text-neutral-300">
+        <strong>LinkedIn Ads:</strong> $75 (B2B targeting)
       </li>
-      <li className="flex items-start text-neutral-700 dark:text-neutral-300">
-        
-        <span>
-          <strong>Content Marketing:</strong> $92 (builds authority)
-        </span>
+      <li className="text-neutral-700 dark:text-neutral-300">
+        <strong>Content Marketing:</strong> $92 (builds authority)
       </li>
-      <li className="flex items-start text-neutral-700 dark:text-neutral-300">
-        
-        <span>
-          <strong>Instagram Ads:</strong> $94 (visual engagement)
-        </span>
+      <li className="text-neutral-700 dark:text-neutral-300">
+        <strong>Instagram Ads:</strong> $94 (visual engagement)
       </li>
-      <li className="flex items-start text-neutral-700 dark:text-neutral-300">
-        
-        <span>
-          <strong>Facebook Ads:</strong> $97 (broad reach)
-        </span>
+      <li className="text-neutral-700 dark:text-neutral-300">
+        <strong>Facebook Ads:</strong> $97 (broad reach)
       </li>
-      <li className="flex items-start text-neutral-700 dark:text-neutral-300">
-        
-        <span>
-          <strong>Google Ads:</strong> $116 (high intent traffic)
-        </span>
+      <li className="text-neutral-700 dark:text-neutral-300">
+        <strong>Google Ads:</strong> $116 (high intent traffic)
       </li>
-      <li className="flex items-start text-neutral-700 dark:text-neutral-300">
-        
-        <span>
-          <strong>Overall Average:</strong> $198
-        </span>
+      <li className="text-neutral-700 dark:text-neutral-300">
+        <strong>Overall Average:</strong> $198
       </li>
-      <li className="flex items-start text-neutral-700 dark:text-neutral-300">
-        
-        <span>
-          <strong>Trade Shows:</strong> $811 (high cost, face-to-face)
-        </span>
+      <li className="text-neutral-700 dark:text-neutral-300">
+        <strong>Trade Shows:</strong> $811 (high cost, face-to-face)
       </li>
     </ul>
 
-    <h3 className="text-xl font-semibold text-neutral-900 dark:text-white mb-3">
-      Why CPL Matters
-    </h3>
+    <h3 className="text-xl font-semibold text-neutral-900 dark:text-white mb-3">Why CPL Matters</h3>
     <ul className="space-y-2 mb-6">
-      <li className="flex items-start text-neutral-700 dark:text-neutral-300">
-        
-        <span>
-          <strong>Channel comparison:</strong> Identify which marketing channels deliver the
-          most cost-effective leads
-        </span>
+      <li className="text-neutral-700 dark:text-neutral-300">
+        <strong>Channel comparison:</strong> Identify which marketing channels deliver the most cost-effective leads
       </li>
-      <li className="flex items-start text-neutral-700 dark:text-neutral-300">
-        
-        <span>
-          <strong>Budget optimization:</strong> Allocate resources to the highest-performing
-          channels
-        </span>
+      <li className="text-neutral-700 dark:text-neutral-300">
+        <strong>Budget optimization:</strong> Allocate resources to the highest-performing channels
       </li>
-      <li className="flex items-start text-neutral-700 dark:text-neutral-300">
-        
-        <span>
-          <strong>Campaign evaluation:</strong> Measure effectiveness of specific campaigns or
-          tactics
-        </span>
+      <li className="text-neutral-700 dark:text-neutral-300">
+        <strong>Campaign evaluation:</strong> Measure effectiveness of specific campaigns or tactics
       </li>
-      <li className="flex items-start text-neutral-700 dark:text-neutral-300">
-        
-        <span>
-          <strong>Sales forecasting:</strong> Predict pipeline growth based on lead generation
-          costs
-        </span>
+      <li className="text-neutral-700 dark:text-neutral-300">
+        <strong>Sales forecasting:</strong> Predict pipeline growth based on lead generation costs
       </li>
     </ul>
 
@@ -225,9 +167,7 @@ const educationalContent = (
     </p>
     <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
       <div className="px-4 py-3 bg-neutral-50 dark:bg-neutral-900/50 border border-neutral-200 dark:border-neutral-800 rounded-lg">
-        <div className="font-semibold text-neutral-900 dark:text-white mb-2">
-          Cost Per Lead (CPL)
-        </div>
+        <div className="font-semibold text-neutral-900 dark:text-white mb-2">Cost Per Lead (CPL)</div>
         <ul className="text-sm text-neutral-700 dark:text-neutral-300 space-y-1">
           <li>Measures lead generation cost</li>
           <li>Top of funnel metric</li>
@@ -236,9 +176,7 @@ const educationalContent = (
         </ul>
       </div>
       <div className="px-4 py-3 bg-neutral-50 dark:bg-neutral-900/50 border border-neutral-200 dark:border-neutral-800 rounded-lg">
-        <div className="font-semibold text-neutral-900 dark:text-white mb-2">
-          Cost Per Acquisition (CPA)
-        </div>
+        <div className="font-semibold text-neutral-900 dark:text-white mb-2">Cost Per Acquisition (CPA)</div>
         <ul className="text-sm text-neutral-700 dark:text-neutral-300 space-y-1">
           <li>Measures customer acquisition cost</li>
           <li>Bottom of funnel metric</li>
@@ -248,33 +186,29 @@ const educationalContent = (
       </div>
     </div>
 
-    <h3 className="text-xl font-semibold text-neutral-900 dark:text-white mb-3">
-      How to Lower Your CPL
-    </h3>
+    <h3 className="text-xl font-semibold text-neutral-900 dark:text-white mb-3">How to Lower Your CPL</h3>
     <ol className="space-y-3 mb-6 list-decimal list-inside text-neutral-700 dark:text-neutral-300">
       <li>
-        <strong>Improve targeting:</strong> Focus on audiences most likely to become qualified
-        leads
+        <strong>Improve targeting:</strong> Focus on audiences most likely to become qualified leads
       </li>
       <li>
-        <strong>Optimize landing pages:</strong> Increase conversion rates with clear value
-        propositions and simple forms
+        <strong>Optimize landing pages:</strong> Increase conversion rates with clear value propositions and simple
+        forms
       </li>
       <li>
-        <strong>Refine ad copy:</strong> Test different messages to improve click-through and
-        conversion rates
+        <strong>Refine ad copy:</strong> Test different messages to improve click-through and conversion rates
       </li>
       <li>
-        <strong>Test different channels:</strong> Experiment to find the most cost-effective
-        lead sources for your business
+        <strong>Test different channels:</strong> Experiment to find the most cost-effective lead sources for your
+        business
       </li>
       <li>
-        <strong>Improve lead quality filters:</strong> Define clear qualification criteria to
-        avoid wasting budget on poor-fit leads
+        <strong>Improve lead quality filters:</strong> Define clear qualification criteria to avoid wasting budget on
+        poor-fit leads
       </li>
       <li>
-        <strong>Leverage organic channels:</strong> Invest in SEO and content marketing for
-        long-term low-CPL lead generation
+        <strong>Leverage organic channels:</strong> Invest in SEO and content marketing for long-term low-CPL lead
+        generation
       </li>
     </ol>
 
@@ -282,8 +216,7 @@ const educationalContent = (
       Calculating True Customer Acquisition Cost
     </h3>
     <p className="text-neutral-700 dark:text-neutral-300 leading-relaxed mb-4">
-      To understand your full customer acquisition cost, you need to factor in your
-      lead-to-customer conversion rate:
+      To understand your full customer acquisition cost, you need to factor in your lead-to-customer conversion rate:
     </p>
     <div className="bg-neutral-50 dark:bg-neutral-900/50 border border-neutral-200 dark:border-neutral-800 rounded-lg p-4 mb-6">
       <div className="text-center text-neutral-900 dark:text-white font-mono text-sm">
@@ -323,9 +256,8 @@ const faqs = [
         >
           CPA
         </Link>{" "}
-        measures the cost to acquire a paying customer (bottom of funnel). CPA is typically
-        higher since not all leads convert to customers. CPA = CPL ÷ Lead-to-Customer
-        Conversion Rate.
+        measures the cost to acquire a paying customer (bottom of funnel). CPA is typically higher since not all leads
+        convert to customers. CPA = CPL ÷ Lead-to-Customer Conversion Rate.
       </>
     ),
   },
@@ -345,9 +277,9 @@ const faqs = [
         >
           conversion rate
         </Link>{" "}
-        from visitor to lead directly impacts CPL. If you double your landing page conversion
-        rate, you can cut your CPL in half with the same ad spend. Focus on both reducing
-        traffic costs AND improving conversion rates to minimize CPL.
+        from visitor to lead directly impacts CPL. If you double your landing page conversion rate, you can cut your CPL
+        in half with the same ad spend. Focus on both reducing traffic costs AND improving conversion rates to minimize
+        CPL.
       </>
     ),
   },
