@@ -1,98 +1,111 @@
 import cors from "@fastify/cors";
 import fastifyStatic from "@fastify/static";
 import { toNodeHandler } from "better-auth/node";
-import Fastify from "fastify";
+import Fastify, { type FastifyInstance, type FastifyReply, type FastifyRequest } from "fastify";
 import { dirname, join } from "path";
 import { fileURLToPath } from "url";
-import { collectTelemetry } from "./api/admin/collectTelemetry.js";
-import { getAdminOrganizations } from "./api/admin/getAdminOrganizations.js";
-import { getAdminServiceEventCount } from "./api/admin/getAdminServiceEventCount.js";
-import { getAdminSites } from "./api/admin/getAdminSites.js";
-import { getEventNames } from "./api/analytics/events/getEventNames.js";
-import { getEventProperties } from "./api/analytics/events/getEventProperties.js";
-import { getEvents } from "./api/analytics/events/getEvents.js";
-import { getOutboundLinks } from "./api/analytics/events/getOutboundLinks.js";
-import { createFunnel } from "./api/analytics/funnels/createFunnel.js";
-import { deleteFunnel } from "./api/analytics/funnels/deleteFunnel.js";
-import { getFunnel } from "./api/analytics/funnels/getFunnel.js";
-import { getFunnelStepSessions } from "./api/analytics/funnels/getFunnelStepSessions.js";
-import { getFunnels } from "./api/analytics/funnels/getFunnels.js";
-import { getErrorBucketed } from "./api/analytics/getErrorBucketed.js";
-import { getErrorEvents } from "./api/analytics/getErrorEvents.js";
-import { getErrorNames } from "./api/analytics/getErrorNames.js";
-import { getJourneys } from "./api/analytics/getJourneys.js";
-import { getSessionLocations } from "./api/analytics/getSessionLocations.js";
-import { getLiveUsercount } from "./api/analytics/getLiveUsercount.js";
-import { getOrgEventCount } from "./api/analytics/getOrgEventCount.js";
-import { getOverview } from "./api/analytics/getOverview.js";
-import { getOverviewBucketed } from "./api/analytics/getOverviewBucketed.js";
-import { getPageTitles } from "./api/analytics/getPageTitles.js";
-import { getRetention } from "./api/analytics/getRetention.js";
-import { getSession } from "./api/analytics/getSession.js";
-import { getSessions } from "./api/analytics/getSessions.js";
-import { getMetric } from "./api/analytics/getMetric.js";
-import { getUserInfo } from "./api/analytics/getUserInfo.js";
-import { getUserSessionCount } from "./api/analytics/getUserSessionCount.js";
-import { getUsers } from "./api/analytics/getUsers.js";
-import { createGoal } from "./api/analytics/goals/createGoal.js";
-import { deleteGoal } from "./api/analytics/goals/deleteGoal.js";
-import { getGoals } from "./api/analytics/goals/getGoals.js";
-import { getGoalSessions } from "./api/analytics/goals/getGoalSessions.js";
-import { updateGoal } from "./api/analytics/goals/updateGoal.js";
-import { getPerformanceByDimension } from "./api/analytics/performance/getPerformanceByDimension.js";
-import { getPerformanceOverview } from "./api/analytics/performance/getPerformanceOverview.js";
-import { getPerformanceTimeSeries } from "./api/analytics/performance/getPerformanceTimeSeries.js";
+import {
+  collectTelemetry,
+  getAdminOrganizations,
+  getAdminServiceEventCount,
+  getAdminSites,
+} from "./api/admin/index.js";
+import {
+  createFunnel,
+  createGoal,
+  deleteFunnel,
+  deleteGoal,
+  getErrorBucketed,
+  getErrorEvents,
+  getErrorNames,
+  getEventNames,
+  getEventProperties,
+  getEvents,
+  getFunnel,
+  getFunnelStepSessions,
+  getFunnels,
+  getGoalSessions,
+  getGoals,
+  getJourneys,
+  getLiveUsercount,
+  getMetric,
+  getOrgEventCount,
+  getOutboundLinks,
+  getOverview,
+  getOverviewBucketed,
+  getPageTitles,
+  getPerformanceByDimension,
+  getPerformanceOverview,
+  getPerformanceTimeSeries,
+  getRetention,
+  getSession,
+  getSessionLocations,
+  getSessions,
+  getUserInfo,
+  getUserSessionCount,
+  getUsers,
+  updateGoal,
+} from "./api/analytics/index.js";
 import { getConfig } from "./api/getConfig.js";
-import { getSessionReplayEvents } from "./api/sessionReplay/getSessionReplayEvents.js";
-import { getSessionReplays } from "./api/sessionReplay/getSessionReplays.js";
-import { recordSessionReplay } from "./api/sessionReplay/recordSessionReplay.js";
-import { deleteSessionReplay } from "./api/sessionReplay/deleteSessionReplay.js";
-import { addSite } from "./api/sites/addSite.js";
-import { updateSiteConfig } from "./api/sites/updateSiteConfig.js";
-import { deleteSite } from "./api/sites/deleteSite.js";
-import { getSite } from "./api/sites/getSite.js";
-import { getSiteExcludedIPs } from "./api/sites/getSiteExcludedIPs.js";
-import { getSiteExcludedCountries } from "./api/sites/getSiteExcludedCountries.js";
-import { getSiteHasData } from "./api/sites/getSiteHasData.js";
-import { getSiteIsPublic } from "./api/sites/getSiteIsPublic.js";
-import { getSitesFromOrg } from "./api/sites/getSitesFromOrg.js";
-import { createCheckoutSession } from "./api/stripe/createCheckoutSession.js";
-import { createPortalSession } from "./api/stripe/createPortalSession.js";
-import { getSubscription } from "./api/stripe/getSubscription.js";
-import { previewSubscriptionUpdate } from "./api/stripe/previewSubscriptionUpdate.js";
-import { updateSubscription } from "./api/stripe/updateSubscription.js";
-import { handleWebhook } from "./api/stripe/webhook.js";
-import { addUserToOrganization } from "./api/user/addUserToOrganization.js";
-import { getUserOrganizations } from "./api/user/getUserOrganizations.js";
-import { listOrganizationMembers } from "./api/user/listOrganizationMembers.js";
-import { updateAccountSettings } from "./api/user/updateAccountSettings.js";
-import { listApiKeys } from "./api/user/listApiKeys.js";
-import { createApiKey } from "./api/user/createApiKey.js";
-import { deleteApiKey } from "./api/user/deleteApiKey.js";
+import {
+  connectGSC,
+  disconnectGSC,
+  getGSCData,
+  getGSCStatus,
+  gscCallback,
+  selectGSCProperty,
+} from "./api/gsc/index.js";
+import {
+  deleteSessionReplay,
+  getSessionReplayEvents,
+  getSessionReplays,
+  recordSessionReplay,
+} from "./api/sessionReplay/index.js";
+import {
+  addSite,
+  batchImportEvents,
+  createSiteImport,
+  deleteSite,
+  deleteSiteImport,
+  getSite,
+  getSiteExcludedCountries,
+  getSiteExcludedIPs,
+  getSiteHasData,
+  getSiteImports,
+  getSiteIsPublic,
+  getSitePrivateLinkConfig,
+  getSitesFromOrg,
+  getTrackingConfig,
+  updateSiteConfig,
+  updateSitePrivateLinkConfig,
+} from "./api/sites/index.js";
+import {
+  createCheckoutSession,
+  createPortalSession,
+  getSubscription,
+  handleWebhook,
+  previewSubscriptionUpdate,
+  updateSubscription,
+} from "./api/stripe/index.js";
+import {
+  addUserToOrganization,
+  createApiKey,
+  deleteApiKey,
+  getUserOrganizations,
+  listApiKeys,
+  listOrganizationMembers,
+  updateAccountSettings,
+} from "./api/user/index.js";
 import { initializeClickhouse } from "./db/clickhouse/clickhouse.js";
 import { initPostgres } from "./db/postgres/initPostgres.js";
 import { mapHeaders } from "./lib/auth-utils.js";
 import { auth } from "./lib/auth.js";
 import { IS_CLOUD } from "./lib/const.js";
-import { siteConfig } from "./lib/siteConfig.js";
 import { trackEvent } from "./services/tracker/trackEvent.js";
 import { handleIdentify } from "./services/tracker/identifyService.js";
 // need to import telemetry service here to start it
 import { telemetryService } from "./services/telemetryService.js";
 import { weeklyReportService } from "./services/weekyReports/weeklyReportService.js";
-import { getTrackingConfig } from "./api/sites/getTrackingConfig.js";
-import { updateSitePrivateLinkConfig } from "./api/sites/updateSitePrivateLinkConfig.js";
-import { getSitePrivateLinkConfig } from "./api/sites/getSitePrivateLinkConfig.js";
-import { connectGSC } from "./api/gsc/connect.js";
-import { gscCallback } from "./api/gsc/callback.js";
-import { getGSCStatus } from "./api/gsc/status.js";
-import { disconnectGSC } from "./api/gsc/disconnect.js";
-import { getGSCData } from "./api/gsc/getData.js";
-import { selectGSCProperty } from "./api/gsc/selectProperty.js";
-import { getSiteImports } from "./api/sites/getSiteImports.js";
-import { createSiteImport } from "./api/sites/createSiteImport.js";
-import { batchImportEvents } from "./api/sites/batchImportEvents.js";
-import { deleteSiteImport } from "./api/sites/deleteSiteImport.js";
 import {
   requireAuth,
   requireAdmin,
@@ -227,158 +240,149 @@ server.get("/api/script.js", async (_, reply) => reply.sendFile("script.js"));
 server.get("/api/replay.js", async (_, reply) => reply.sendFile("rrweb.min.js"));
 server.get("/api/metrics.js", async (_, reply) => reply.sendFile("web-vitals.iife.js"));
 
-// WEB & PRODUCT ANALYTICS
+// Domain-specific route plugins
+async function analyticsRoutes(fastify: FastifyInstance) {
+  // WEB & PRODUCT ANALYTICS
 
-// This endpoint gets called a lot so we don't want to log it
-server.get("/api/live-user-count/:siteId", { logLevel: "silent", ...publicSite }, getLiveUsercount);
-server.get("/api/overview/:siteId", publicSite, getOverview);
-server.get("/api/overview-bucketed/:siteId", publicSite, getOverviewBucketed);
-server.get("/api/metric/:siteId", publicSite, getMetric);
-server.get("/api/page-titles/:siteId", publicSite, getPageTitles);
-server.get("/api/error-names/:siteId", publicSite, getErrorNames);
-server.get("/api/error-events/:siteId", publicSite, getErrorEvents);
-server.get("/api/error-bucketed/:siteId", publicSite, getErrorBucketed);
-server.get("/api/retention/:siteId", publicSite, getRetention);
-server.get("/api/site-has-data/:siteId", publicSite, getSiteHasData);
-server.get("/api/site-is-public/:siteId", publicSite, getSiteIsPublic);
-server.get("/api/sessions/:siteId", publicSite, getSessions);
-server.get("/api/sessions/:sessionId/:siteId", publicSite, getSession);
-server.get("/api/events/:siteId", publicSite, getEvents);
-server.get("/api/users/:siteId", publicSite, getUsers);
-server.get("/api/users/session-count/:siteId", publicSite, getUserSessionCount);
-server.get("/api/users/:userId/:siteId", publicSite, getUserInfo);
-server.get("/api/session-locations/:siteId", publicSite, getSessionLocations);
-server.get("/api/funnels/:siteId", publicSite, getFunnels);
-server.get("/api/journeys/:siteId", publicSite, getJourneys);
-server.post("/api/funnels/analyze/:siteId", publicSite, getFunnel);
-server.post("/api/funnels/:stepNumber/sessions/:siteId", publicSite, getFunnelStepSessions);
-server.post("/api/funnels/:siteId", authSite, createFunnel);
-server.delete("/api/funnels/:funnelId/:siteId", authSite, deleteFunnel);
-server.get("/api/goals/:siteId", publicSite, getGoals);
-server.get("/api/goals/:goalId/sessions/:siteId", publicSite, getGoalSessions);
-server.post("/api/goals/:siteId", authSite, createGoal);
-server.delete("/api/goals/:goalId/:siteId", authSite, deleteGoal);
-server.put("/api/goals/:goalId/:siteId", authSite, updateGoal);
-server.get("/api/events/names/:siteId", publicSite, getEventNames);
-server.get("/api/events/properties/:siteId", publicSite, getEventProperties);
-server.get("/api/events/outbound/:siteId", publicSite, getOutboundLinks);
-server.get("/api/org-event-count/:organizationId", orgMember, getOrgEventCount);
+  // This endpoint gets called a lot so we don't want to log it
+  fastify.get("/live-user-count/:siteId", { logLevel: "silent", ...publicSite }, getLiveUsercount);
+  fastify.get("/overview/:siteId", publicSite, getOverview);
+  fastify.get("/overview-bucketed/:siteId", publicSite, getOverviewBucketed);
+  fastify.get("/metric/:siteId", publicSite, getMetric);
+  fastify.get("/page-titles/:siteId", publicSite, getPageTitles);
+  fastify.get("/error-names/:siteId", publicSite, getErrorNames);
+  fastify.get("/error-events/:siteId", publicSite, getErrorEvents);
+  fastify.get("/error-bucketed/:siteId", publicSite, getErrorBucketed);
+  fastify.get("/retention/:siteId", publicSite, getRetention);
+  fastify.get("/site-has-data/:siteId", publicSite, getSiteHasData);
+  fastify.get("/site-is-public/:siteId", publicSite, getSiteIsPublic);
+  fastify.get("/sessions/:siteId", publicSite, getSessions);
+  fastify.get("/sessions/:sessionId/:siteId", publicSite, getSession);
+  fastify.get("/events/:siteId", publicSite, getEvents);
+  fastify.get("/users/:siteId", publicSite, getUsers);
+  fastify.get("/users/session-count/:siteId", publicSite, getUserSessionCount);
+  fastify.get("/users/:userId/:siteId", publicSite, getUserInfo);
+  fastify.get("/session-locations/:siteId", publicSite, getSessionLocations);
+  fastify.get("/funnels/:siteId", publicSite, getFunnels);
+  fastify.get("/journeys/:siteId", publicSite, getJourneys);
+  fastify.post("/funnels/analyze/:siteId", publicSite, getFunnel);
+  fastify.post("/funnels/:stepNumber/sessions/:siteId", publicSite, getFunnelStepSessions);
+  fastify.post("/funnels/:siteId", authSite, createFunnel);
+  fastify.delete("/funnels/:funnelId/:siteId", authSite, deleteFunnel);
+  fastify.get("/goals/:siteId", publicSite, getGoals);
+  fastify.get("/goals/:goalId/sessions/:siteId", publicSite, getGoalSessions);
+  fastify.post("/goals/:siteId", authSite, createGoal);
+  fastify.delete("/goals/:goalId/:siteId", authSite, deleteGoal);
+  fastify.put("/goals/:goalId/:siteId", authSite, updateGoal);
+  fastify.get("/events/names/:siteId", publicSite, getEventNames);
+  fastify.get("/events/properties/:siteId", publicSite, getEventProperties);
+  fastify.get("/events/outbound/:siteId", publicSite, getOutboundLinks);
+  fastify.get("/org-event-count/:organizationId", orgMember, getOrgEventCount);
 
-// Performance Analytics
-server.get("/api/performance/overview/:siteId", publicSite, getPerformanceOverview);
-server.get("/api/performance/time-series/:siteId", publicSite, getPerformanceTimeSeries);
-server.get("/api/performance/by-dimension/:siteId", publicSite, getPerformanceByDimension);
+  // Performance Analytics
+  fastify.get("/performance/overview/:siteId", publicSite, getPerformanceOverview);
+  fastify.get("/performance/time-series/:siteId", publicSite, getPerformanceTimeSeries);
+  fastify.get("/performance/by-dimension/:siteId", publicSite, getPerformanceByDimension);
+}
 
-// Session Replay
-server.post("/api/session-replay/record/:siteId", recordSessionReplay); // Public - tracking endpoint
-server.get("/api/session-replay/list/:siteId", publicSite, getSessionReplays);
-server.get("/api/session-replay/:sessionId/:siteId", publicSite, getSessionReplayEvents);
-server.delete("/api/session-replay/:sessionId/:siteId", authSite, deleteSessionReplay);
+async function sessionReplayRoutes(fastify: FastifyInstance) {
+  // Session Replay
+  fastify.post("/session-replay/record/:siteId", recordSessionReplay); // Public - tracking endpoint
+  fastify.get("/session-replay/list/:siteId", publicSite, getSessionReplays);
+  fastify.get("/session-replay/:sessionId/:siteId", publicSite, getSessionReplayEvents);
+  fastify.delete("/session-replay/:sessionId/:siteId", authSite, deleteSessionReplay);
+}
 
-// Sites
-server.get("/api/sites/:siteId", publicSite, getSite);
-server.put("/api/sites/:siteId/config", adminSite, updateSiteConfig);
-server.delete("/api/sites/:siteId", adminSite, deleteSite);
-server.get("/api/sites/:siteId/private-link-config", adminSite, getSitePrivateLinkConfig);
-server.post("/api/sites/:siteId/private-link-config", adminSite, updateSitePrivateLinkConfig);
-server.get("/api/site/tracking-config/:siteId", getTrackingConfig); // Public - used by tracking script
-server.get("/api/sites/:siteId/excluded-ips", authSite, getSiteExcludedIPs);
-server.get("/api/sites/:siteId/excluded-countries", authSite, getSiteExcludedCountries);
+async function sitesRoutes(fastify: FastifyInstance) {
+  // Sites
+  fastify.get("/sites/:siteId", publicSite, getSite);
+  fastify.put("/sites/:siteId/config", adminSite, updateSiteConfig);
+  fastify.delete("/sites/:siteId", adminSite, deleteSite);
+  fastify.get("/sites/:siteId/private-link-config", adminSite, getSitePrivateLinkConfig);
+  fastify.post("/sites/:siteId/private-link-config", adminSite, updateSitePrivateLinkConfig);
+  fastify.get("/site/tracking-config/:siteId", getTrackingConfig); // Public - used by tracking script
+  fastify.get("/sites/:siteId/excluded-ips", authSite, getSiteExcludedIPs);
+  fastify.get("/sites/:siteId/excluded-countries", authSite, getSiteExcludedCountries);
 
-// Site Imports
-server.get("/api/sites/:siteId/imports", adminSite, getSiteImports);
-server.post("/api/sites/:siteId/imports", adminSite, createSiteImport);
-server.post("/api/sites/:siteId/imports/:importId/events", adminSite, batchImportEvents);
-server.delete("/api/sites/:siteId/imports/:importId", adminSite, deleteSiteImport);
+  // Site Imports
+  fastify.get("/sites/:siteId/imports", adminSite, getSiteImports);
+  fastify.post("/sites/:siteId/imports", adminSite, createSiteImport);
+  fastify.post("/sites/:siteId/imports/:importId/events", adminSite, batchImportEvents);
+  fastify.delete("/sites/:siteId/imports/:importId", adminSite, deleteSiteImport);
+}
 
-// Organizations
-server.get("/api/organizations/:organizationId/sites", orgMember, getSitesFromOrg);
-server.post("/api/organizations/:organizationId/sites", orgAdminParams, addSite);
-server.get("/api/organizations/:organizationId/members", orgMember, listOrganizationMembers);
-server.post("/api/organizations/:organizationId/members", orgMember, addUserToOrganization);
+async function organizationsRoutes(fastify: FastifyInstance) {
+  // Organizations
+  fastify.get("/organizations/:organizationId/sites", orgMember, getSitesFromOrg);
+  fastify.post("/organizations/:organizationId/sites", orgAdminParams, addSite);
+  fastify.get("/organizations/:organizationId/members", orgMember, listOrganizationMembers);
+  fastify.post("/organizations/:organizationId/members", orgMember, addUserToOrganization);
+}
 
-// User
-server.get("/api/config", getConfig); // Public - returns app config
-server.get("/api/user/organizations", authOnly, getUserOrganizations);
-server.post("/api/user/account-settings", authOnly, updateAccountSettings);
-server.get("/api/user/api-keys", authOnly, listApiKeys);
-server.post("/api/user/api-keys", authOnly, createApiKey);
-server.delete("/api/user/api-keys/:keyId", authOnly, deleteApiKey);
+async function userRoutes(fastify: FastifyInstance) {
+  // User
+  fastify.get("/config", getConfig); // Public - returns app config
+  fastify.get("/user/organizations", authOnly, getUserOrganizations);
+  fastify.post("/user/account-settings", authOnly, updateAccountSettings);
+  fastify.get("/user/api-keys", authOnly, listApiKeys);
+  fastify.post("/user/api-keys", authOnly, createApiKey);
+  fastify.delete("/user/api-keys/:keyId", authOnly, deleteApiKey);
+}
 
-// GOOGLE SEARCH CONSOLE
-server.get("/api/gsc/connect/:siteId", authSite, connectGSC);
-server.get("/api/gsc/callback", gscCallback); // Public - OAuth callback
-server.get("/api/gsc/status/:siteId", publicSite, getGSCStatus);
-server.delete("/api/gsc/disconnect/:siteId", authSite, disconnectGSC);
-server.post("/api/gsc/select-property/:siteId", authSite, selectGSCProperty);
-server.get("/api/gsc/data/:siteId", publicSite, getGSCData);
+async function gscRoutes(fastify: FastifyInstance) {
+  // GOOGLE SEARCH CONSOLE
+  fastify.get("/gsc/connect/:siteId", authSite, connectGSC);
+  fastify.get("/gsc/callback", gscCallback); // Public - OAuth callback
+  fastify.get("/gsc/status/:siteId", publicSite, getGSCStatus);
+  fastify.delete("/gsc/disconnect/:siteId", authSite, disconnectGSC);
+  fastify.post("/gsc/select-property/:siteId", authSite, selectGSCProperty);
+  fastify.get("/gsc/data/:siteId", publicSite, getGSCData);
+}
 
-// UPTIME MONITORING
-// Only register uptime routes when IS_CLOUD is true (Redis is available)
-// if (IS_CLOUD) {
-//   // Dynamically import uptime modules only when needed
-//   const { getMonitors } = await import("./api/uptime/getMonitors.js");
-//   const { getMonitor } = await import("./api/uptime/getMonitor.js");
-//   const { createMonitor } = await import("./api/uptime/createMonitor.js");
-//   const { updateMonitor } = await import("./api/uptime/updateMonitor.js");
-//   const { deleteMonitor } = await import("./api/uptime/deleteMonitor.js");
-//   const { getMonitorEvents } = await import("./api/uptime/getMonitorEvents.js");
-//   const { getMonitorStats } = await import("./api/uptime/getMonitorStats.js");
-//   const { getMonitorUptimeBuckets } = await import("./api/uptime/getMonitorUptimeBuckets.js");
-//   const { getMonitorStatus } = await import("./api/uptime/getMonitorStatus.js");
-//   const { getMonitorUptime } = await import("./api/uptime/getMonitorUptime.js");
-//   const { getRegions } = await import("./api/uptime/getRegions.js");
-//   const { incidentsRoutes } = await import("./api/uptime/incidents.js");
-//   const { notificationRoutes } = await import("./api/uptime/notifications.js");
+async function stripeAdminRoutes(fastify: FastifyInstance) {
+  // STRIPE & ADMIN
+  if (IS_CLOUD) {
+    // Stripe Routes
+    fastify.post("/stripe/create-checkout-session", authOnly, createCheckoutSession);
+    fastify.post("/stripe/create-portal-session", authOnly, createPortalSession);
+    fastify.post("/stripe/preview-subscription-update", authOnly, previewSubscriptionUpdate);
+    fastify.post("/stripe/update-subscription", authOnly, updateSubscription);
+    fastify.get("/stripe/subscription", authOnly, getSubscription);
+    fastify.post("/stripe/webhook", { config: { rawBody: true } }, handleWebhook); // Public - Stripe webhook
 
-//   server.get("/api/uptime/monitors", getMonitors);
-//   server.get("/api/uptime/monitors/:monitorId", getMonitor);
-//   server.post("/api/uptime/monitors", createMonitor);
-//   server.put("/api/uptime/monitors/:monitorId", updateMonitor);
-//   server.delete("/api/uptime/monitors/:monitorId", deleteMonitor);
-//   server.get("/api/uptime/monitors/:monitorId/events", getMonitorEvents);
-//   server.get("/api/uptime/monitors/:monitorId/stats", getMonitorStats);
-//   server.get("/api/uptime/monitors/:monitorId/status", getMonitorStatus);
-//   server.get("/api/uptime/monitors/:monitorId/uptime", getMonitorUptime);
-//   server.get("/api/uptime/monitors/:monitorId/buckets", getMonitorUptimeBuckets);
-//   server.get("/api/uptime/regions", getRegions);
+    // Admin Routes
+    fastify.get("/admin/sites", adminOnly, getAdminSites);
+    fastify.get("/admin/organizations", adminOnly, getAdminOrganizations);
+    fastify.get("/admin/service-event-count", adminOnly, getAdminServiceEventCount);
+    fastify.post("/admin/telemetry", collectTelemetry); // Public - telemetry collection
 
-//   // Register incidents routes
-//   server.register(incidentsRoutes);
+    // AppSumo Routes
+    const { activateAppSumoLicense, handleAppSumoWebhook } = await import("./api/as/index.js");
 
-//   // Register notification routes
-//   server.register(notificationRoutes);
-// }
+    fastify.post("/as/activate", authOnly, activateAppSumoLicense);
+    fastify.post("/as/webhook", handleAppSumoWebhook); // Public - AppSumo webhook
+  }
+}
 
-// STRIPE & ADMIN
+// Main API routes plugin - registers all domain plugins
+async function apiRoutes(fastify: FastifyInstance) {
+  await fastify.register(analyticsRoutes);
+  await fastify.register(sessionReplayRoutes);
+  await fastify.register(sitesRoutes);
+  await fastify.register(organizationsRoutes);
+  await fastify.register(userRoutes);
+  await fastify.register(gscRoutes);
+  await fastify.register(stripeAdminRoutes);
 
-if (IS_CLOUD) {
-  // Stripe Routes
-  server.post("/api/stripe/create-checkout-session", authOnly, createCheckoutSession);
-  server.post("/api/stripe/create-portal-session", authOnly, createPortalSession);
-  server.post("/api/stripe/preview-subscription-update", authOnly, previewSubscriptionUpdate);
-  server.post("/api/stripe/update-subscription", authOnly, updateSubscription);
-  server.get("/api/stripe/subscription", authOnly, getSubscription);
-  server.post("/api/stripe/webhook", { config: { rawBody: true } }, handleWebhook); // Public - Stripe webhook
-
-  // Admin Routes
-  server.get("/api/admin/sites", adminOnly, getAdminSites);
-  server.get("/api/admin/organizations", adminOnly, getAdminOrganizations);
-  server.get("/api/admin/service-event-count", adminOnly, getAdminServiceEventCount);
-  server.post("/api/admin/telemetry", collectTelemetry); // Public - telemetry collection
-
-  // AppSumo Routes
-  const { activateAppSumoLicense } = await import("./api/as/activate.js");
-  const { handleAppSumoWebhook } = await import("./api/as/webhook.js");
-
-  server.post("/api/as/activate", authOnly, activateAppSumoLicense);
-  server.post("/api/as/webhook", handleAppSumoWebhook); // Public - AppSumo webhook
+  // Health check
+  fastify.get("/health", { logLevel: "silent" }, (_: FastifyRequest, reply: FastifyReply) => reply.send("OK"));
 }
 
 server.post("/api/track", trackEvent);
 server.post("/api/identify", handleIdentify);
 
-server.get("/api/health", { logLevel: "silent" }, (_, reply) => reply.send("OK"));
+// Register API routes with /api prefix
+server.register(apiRoutes, { prefix: "/api" });
 
 const start = async () => {
   try {
