@@ -167,6 +167,36 @@ export async function checkApiKey(
   return { valid: false, role: null };
 }
 
+export async function getUserIdFromRequest(req: FastifyRequest): Promise<string | null> {
+  // First, check for session-based auth
+  const session = await getSessionFromReq(req);
+  if (session?.user?.id) {
+    return session.user.id;
+  }
+
+  // Fall back to API key auth
+  const authHeader = req.headers["authorization"];
+  const bearerToken =
+    authHeader && typeof authHeader === "string" && authHeader.startsWith("Bearer ") ? authHeader.substring(7) : null;
+  const queryApiKey = (req.query as any)?.api_key;
+  const apiKey = bearerToken || queryApiKey;
+
+  if (apiKey && typeof apiKey === "string") {
+    try {
+      const result = await auth.api.verifyApiKey({
+        body: { key: apiKey },
+      });
+      if (result.valid && result.key?.userId) {
+        return result.key.userId;
+      }
+    } catch (error) {
+      logger.error(error, "Error verifying API key");
+    }
+  }
+
+  return null;
+}
+
 // for routes that are potentially public
 export async function getUserHasAccessToSitePublic(req: FastifyRequest, siteId: string | number) {
   const [userSites, config] = await Promise.all([getSitesUserHasAccessTo(req), siteConfig.getConfig(siteId)]);

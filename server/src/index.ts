@@ -91,6 +91,7 @@ import {
   addUserToOrganization,
   createApiKey,
   deleteApiKey,
+  getMyOrganizations,
   getUserOrganizations,
   listApiKeys,
   listOrganizationMembers,
@@ -312,6 +313,7 @@ async function sitesRoutes(fastify: FastifyInstance) {
 
 async function organizationsRoutes(fastify: FastifyInstance) {
   // Organizations
+  fastify.get("/organizations", authOnly, getMyOrganizations);
   fastify.get("/organizations/:organizationId/sites", orgMember, getSitesFromOrg);
   fastify.post("/organizations/:organizationId/sites", orgAdminParams, addSite);
   fastify.get("/organizations/:organizationId/members", orgMember, listOrganizationMembers);
