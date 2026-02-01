@@ -256,7 +256,7 @@ export async function trackEvent(request: FastifyRequest, reply: FastifyReply) {
     // Get the site configuration to get the numeric siteId
     const siteConfiguration = await siteConfig.getConfig(validatedPayload.site_id);
     if (!siteConfiguration) {
-      logger.warn({ siteId: validatedPayload.site_id }, "Site not found");
+      // logger.warn({ siteId: validatedPayload.site_id }, "Site not found");
       return reply.status(404).send({
         success: false,
         error: "Site not found",
@@ -271,7 +271,7 @@ export async function trackEvent(request: FastifyRequest, reply: FastifyReply) {
       // Use custom user agent if provided, otherwise fall back to header
       const userAgent = validatedPayload.user_agent || (request.headers["user-agent"] as string);
       if (userAgent && isbot(userAgent)) {
-        logger.info({ siteId: validatedPayload.site_id, userAgent }, "Bot request filtered");
+        // logger.info({ siteId: validatedPayload.site_id, userAgent }, "Bot request filtered");
         return reply.status(200).send({
           success: true,
           message: "Event not tracked - bot detected",
@@ -281,7 +281,7 @@ export async function trackEvent(request: FastifyRequest, reply: FastifyReply) {
 
     // Check if the site has exceeded its monthly limit (using numeric siteId)
     if (usageService.isSiteOverLimit(siteConfiguration.siteId)) {
-      logger.info({ siteId: validatedPayload.site_id }, "Skipping event - site over monthly limit");
+      // logger.info({ siteId: validatedPayload.site_id }, "Skipping event - site over monthly limit");
       return reply.status(200).send("Site over monthly limit, event not tracked");
     }
 
@@ -292,7 +292,7 @@ export async function trackEvent(request: FastifyRequest, reply: FastifyReply) {
     if (siteConfiguration.excludedIPs && siteConfiguration.excludedIPs.length > 0) {
       const isExcluded = await siteConfig.isIPExcluded(requestIP, validatedPayload.site_id);
       if (isExcluded) {
-        logger.info({ siteId: validatedPayload.site_id, ip: requestIP }, "IP excluded from tracking");
+        // logger.info({ siteId: validatedPayload.site_id, ip: requestIP }, "IP excluded from tracking");
         return reply.status(200).send({
           success: true,
           message: "Event not tracked - IP excluded",

@@ -1,6 +1,7 @@
 "use client";
 
 import { CodeSnippet } from "@/components/CodeSnippet";
+import { VerifyInstallation } from "@/components/VerifyInstallation";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
@@ -73,21 +74,18 @@ export function ScriptBuilder({ siteId }: ScriptBuilderProps) {
   // Generate tracking script dynamically based on options
   const trackingScript = `<script
     src="${globalThis.location.origin}/api/script.js"
-    data-site-id="${siteId}"${
-      debounceValue !== 500
-        ? `
+    data-site-id="${siteId}"${debounceValue !== 500
+      ? `
     data-debounce="${debounceValue}"`
-        : ""
-    }${
-      skipPatterns.length > 0
-        ? `
+      : ""
+    }${skipPatterns.length > 0
+      ? `
     data-skip-patterns='${JSON.stringify(skipPatterns)}'`
-        : ""
-    }${
-      maskPatterns.length > 0
-        ? `
+      : ""
+    }${maskPatterns.length > 0
+      ? `
     data-mask-patterns='${JSON.stringify(maskPatterns)}'`
-        : ""
+      : ""
     }
     defer
 ></script>`;
@@ -102,6 +100,8 @@ export function ScriptBuilder({ siteId }: ScriptBuilderProps) {
           </p>
         </div>
         <CodeSnippet language="HTML" code={trackingScript} />
+
+        <VerifyInstallation siteId={siteId} />
 
         {/* Script Options Section */}
         <div className="space-y-4">

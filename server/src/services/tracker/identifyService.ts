@@ -80,15 +80,15 @@ export async function handleIdentify(request: FastifyRequest, reply: FastifyRepl
           });
         } else if (existingAlias[0].userId !== user_id) {
           // Anonymous ID already linked to a different user - log but don't error
-          logger.warn(
-            {
-              siteId,
-              anonymousId,
-              existingUserId: existingAlias[0].userId,
-              newUserId: user_id,
-            },
-            "Anonymous ID already linked to different user"
-          );
+          // logger.warn(
+          //   {
+          //     siteId,
+          //     anonymousId,
+          //     existingUserId: existingAlias[0].userId,
+          //     newUserId: user_id,
+          //   },
+          //   "Anonymous ID already linked to different user"
+          // );
         }
       } catch (error) {
         // Handle unique constraint violation gracefully (race condition)

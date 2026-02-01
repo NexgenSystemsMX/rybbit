@@ -37,6 +37,7 @@ import React from "react";
 import { useGetSite, useSiteHasData } from "../../../../api/admin/hooks/useSites";
 import { CodeSnippet } from "../../../../components/CodeSnippet";
 import { Alert } from "../../../../components/ui/alert";
+import { VerifyInstallation } from "../../../../components/VerifyInstallation";
 import { useStore } from "../../../../lib/store";
 
 // Custom Card Component
@@ -100,6 +101,7 @@ export function NoData() {
               </a>{" "}
               if your script isn't sending traffic.
             </span>
+            {siteMetadata?.siteId && <VerifyInstallation siteId={siteMetadata.siteId} />}
             {/* Framework Guide Cards */}
             <div className="">
               <h2 className="text-sm font-medium mb-4">Platform Guides</h2>

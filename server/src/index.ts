@@ -82,6 +82,7 @@ import {
   getTrackingConfig,
   updateSiteConfig,
   updateSitePrivateLinkConfig,
+  verifyScript,
 } from "./api/sites/index.js";
 import {
   createCheckoutSession,
@@ -284,6 +285,7 @@ async function sitesRoutes(fastify: FastifyInstance) {
   fastify.get("/site/tracking-config/:siteId", getTrackingConfig); // Public - used by tracking script
   fastify.get("/sites/:siteId/excluded-ips", authSite, getSiteExcludedIPs);
   fastify.get("/sites/:siteId/excluded-countries", authSite, getSiteExcludedCountries);
+  fastify.get("/sites/:siteId/verify-script", authSite, verifyScript);
 
   // Site Imports
   fastify.get("/sites/:siteId/imports", adminSite, getSiteImports);

@@ -7,8 +7,9 @@ export {
   fetchSitesFromOrg,
   fetchSiteHasData,
   fetchSiteIsPublic,
+  verifyScript,
 } from "./sites";
-export type { SiteResponse, GetSitesFromOrgResponse } from "./sites";
+export type { SiteResponse, GetSitesFromOrgResponse, VerifyScriptResponse } from "./sites";
 
 // Organizations endpoints
 export {

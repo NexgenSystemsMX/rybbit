@@ -118,7 +118,7 @@ class PageviewQueue {
       };
     });
 
-    this.logger.info({ count: processedPageviews.length }, "Bulk insert to ClickHouse");
+    // this.logger.info({ count: processedPageviews.length }, "Bulk insert to ClickHouse");
     // Bulk insert into database
     try {
       await clickhouse.insert({
