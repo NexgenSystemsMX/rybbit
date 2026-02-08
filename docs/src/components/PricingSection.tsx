@@ -109,7 +109,7 @@ function getFormattedPrice(eventLimit: number | string, planType: "standard" | "
 
 export function PricingSection() {
   const [eventLimitIndex, setEventLimitIndex] = useState(0); // Default to 100k (index 0)
-  const [isAnnual, setIsAnnual] = useState(false);
+  const [isAnnual, setIsAnnual] = useState(true);
 
   const eventLimit = EVENT_TIERS[eventLimitIndex];
   const standardPrices = getFormattedPrice(eventLimit, "standard");
@@ -149,15 +149,15 @@ export function PricingSection() {
                 {typeof eventLimit === "number" ? eventLimit.toLocaleString() : eventLimit}
               </div>
             </div>
-            <div className="flex flex-col items-end">
+            <div className="flex flex-col items-end relative">
               {/* Billing toggle */}
-              <div className="flex mb-2 text-sm">
+              <div className="flex mb-2 text-sm bg-neutral-200 dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-700 rounded-full p-1">
                 <button
                   onClick={() => setIsAnnual(false)}
                   className={cn(
                     "px-3 py-1 rounded-full transition-colors cursor-pointer",
                     !isAnnual
-                      ? "bg-emerald-500/30 dark:bg-emerald-500/20 text-emerald-600 dark:text-emerald-400 font-medium"
+                      ? "bg-white dark:bg-white/20 text-neutral-700 dark:text-neutral-100 font-medium"
                       : "text-neutral-600 dark:text-neutral-400 hover:text-neutral-800 dark:hover:text-neutral-200"
                   )}
                 >
@@ -168,13 +168,15 @@ export function PricingSection() {
                   className={cn(
                     "px-3 py-1 rounded-full transition-colors cursor-pointer",
                     isAnnual
-                      ? "bg-emerald-500/30 dark:bg-emerald-500/20 text-emerald-600 dark:text-emerald-400 font-medium"
+                      ? "bg-white dark:bg-white/20 text-neutral-700 dark:text-neutral-100 font-medium"
                       : "text-neutral-600 dark:text-neutral-400 hover:text-neutral-800 dark:hover:text-neutral-200"
                   )}
                 >
                   Annual
-                  <span className="ml-1 text-xs text-emerald-600 dark:text-emerald-500">-17%</span>
                 </button>
+                <div className="text-xs text-white absolute top-0 right-0 -translate-y-3 translate-x-1/2 bg-emerald-500 dark:bg-emerald-500 rounded-full px-2 py-0.5">
+                  2 months free
+                </div>
               </div>
             </div>
           </div>
@@ -195,10 +197,10 @@ export function PricingSection() {
                 {index === EVENT_TIERS.length - 1
                   ? "20M+"
                   : typeof tier === "number" && tier >= 1_000_000
-                  ? `${tier / 1_000_000}M`
-                  : typeof tier === "number"
-                  ? `${tier / 1_000}K`
-                  : "Custom"}
+                    ? `${tier / 1_000_000}M`
+                    : typeof tier === "number"
+                      ? `${tier / 1_000}K`
+                      : "Custom"}
               </span>
             ))}
           </div>
