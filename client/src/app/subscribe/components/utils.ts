@@ -3,6 +3,8 @@
 import { FREE_SITE_LIMIT, STANDARD_SITE_LIMIT, STANDARD_TEAM_LIMIT } from "../../../lib/const";
 import { getStripePrices, STRIPE_TIERS } from "../../../lib/stripe";
 
+import { FeatureItem } from "@/components/pricing/PricingCard";
+
 export const EVENT_TIERS = [...STRIPE_TIERS.map(tier => tier.events), "Custom"];
 
 export const STANDARD_FEATURES = [
@@ -45,12 +47,14 @@ export const ENTERPRISE_FEATURES = [
   "Slack/live chat support",
 ];
 
-export const FREE_FEATURES = [
-  "1 user",
-  `${FREE_SITE_LIMIT} website`,
-  "Web analytics dashboard",
-  "Custom events",
-  "6 month data retention",
+export const FREE_FEATURES: FeatureItem[] = [
+  { feature: "1 user", included: true },
+  { feature: `${FREE_SITE_LIMIT} website`, included: true },
+  { feature: "Web analytics dashboard", included: true },
+  { feature: "Custom events", included: true },
+  { feature: "6 month data retention", included: true },
+  { feature: "Advanced features", included: false },
+  { feature: "Email support", included: false },
 ];
 
 const stripePrices = getStripePrices();

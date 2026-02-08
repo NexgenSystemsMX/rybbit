@@ -7,7 +7,7 @@ import { Suspense } from "react";
 import { StandardPage } from "../../components/StandardPage";
 import { UsageChart } from "../../components/UsageChart";
 import { useStripeSubscription } from "../../lib/subscription/useStripeSubscription";
-import { PricingCard } from "./components/PricingCard";
+import { PricingCards } from "./components/PricingCards";
 import { PricingHeader } from "./components/PricingHeader";
 import { useQueryState } from "nuqs";
 
@@ -38,7 +38,7 @@ function SubscribeContent() {
           <PricingHeader />
 
           {/* Pricing Card */}
-          <PricingCard isLoggedIn={!!sessionData?.user} />
+          <PricingCards isLoggedIn={!!sessionData?.user} />
         </div>
       </StandardPage>
     );
@@ -50,7 +50,7 @@ function SubscribeContent() {
         <PricingHeader />
 
         {/* Pricing Card */}
-        <PricingCard isLoggedIn={!!sessionData?.user} />
+        <PricingCards isLoggedIn={!!sessionData?.user} />
 
         {/* Usage Stats and Chart */}
         {organizationId && (

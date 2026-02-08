@@ -1,7 +1,5 @@
 import { Check, X, ArrowDown, ArrowUp } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { trackAdEvent } from "@/lib/trackAdEvent";
-import Link from "next/link";
 import { useState } from "react";
 
 export type FeatureItem = { feature: string; included?: boolean } | string;
@@ -11,7 +9,6 @@ export interface PricingCardProps {
   description: string;
   priceDisplay: React.ReactNode;
   buttonText?: string;
-  buttonHref?: string;
   buttonVariant?: "default" | "primary";
   features: FeatureItem[];
   footerText?: React.ReactNode;
@@ -20,7 +17,6 @@ export interface PricingCardProps {
   customButton?: React.ReactNode;
   onClick?: () => void;
   disabled?: boolean;
-  eventLocation?: string;
 }
 
 export function PricingCard({
@@ -28,7 +24,6 @@ export function PricingCard({
   description,
   priceDisplay,
   buttonText,
-  buttonHref,
   buttonVariant = "primary",
   features,
   footerText,
@@ -37,7 +32,6 @@ export function PricingCard({
   customButton,
   onClick,
   disabled,
-  eventLocation,
 }: PricingCardProps) {
   const [isExpanded, setIsExpanded] = useState(false);
   const isFree = variant === "free";
@@ -48,15 +42,15 @@ export function PricingCard({
 
   return (
     <div className="w-full flex-shrink-0">
-      <div className="bg-neutral-200/40 dark:bg-neutral-900/40 p-2 rounded-3xl border border-neutral-300 dark:border-neutral-800 h-full">
+      <div className="bg-neutral-200/20 dark:bg-neutral-900/40 p-2 rounded-3xl border border-neutral-200 dark:border-neutral-800 h-full">
         <div
           className={cn(
             "rounded-2xl border overflow-hidden backdrop-blur-sm shadow-xl h-full",
             recommended
-              ? "bg-neutral-100/80 dark:bg-neutral-800 border-emerald-500 border-2"
+              ? "bg-neutral-50 dark:bg-neutral-800/60 border-emerald-500 border-2"
               : isFree
-                ? "bg-neutral-100/30 dark:bg-neutral-800/15 border-neutral-300/60 dark:border-neutral-800/60 text-neutral-600 dark:text-neutral-300"
-                : "bg-neutral-50 dark:bg-neutral-900 border-neutral-300 dark:border-neutral-800"
+                ? "bg-neutral-50/80 dark:bg-neutral-800/15 border-neutral-200/60 dark:border-neutral-800/60 text-neutral-600 dark:text-neutral-300"
+                : "bg-neutral-50/50 dark:bg-neutral-900 border-neutral-200 dark:border-neutral-800"
           )}
         >
           <div className="p-6">
@@ -77,28 +71,6 @@ export function PricingCard({
 
             {customButton ? (
               customButton
-            ) : buttonHref ? (
-              <Link href={buttonHref} className="w-full block">
-                <button
-                  onClick={() => {
-                    if (eventLocation) {
-                      trackAdEvent("signup", { location: "pricing" });
-                    }
-                    onClick?.();
-                  }}
-                  disabled={disabled}
-                  data-rybbit-event={eventLocation ? "signup" : undefined}
-                  data-rybbit-prop-location={eventLocation}
-                  className={cn(
-                    "w-full font-medium px-5 py-3 rounded-lg transform hover:-translate-y-0.5 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-opacity-50 cursor-pointer",
-                    isPrimary
-                      ? "bg-emerald-600 hover:bg-emerald-500 text-white shadow-lg shadow-emerald-900/20 focus:ring-emerald-500 disabled:opacity-50 disabled:pointer-events-none"
-                      : "bg-neutral-300 dark:bg-neutral-700 hover:bg-neutral-200 dark:hover:bg-neutral-600 text-neutral-900 dark:text-white"
-                  )}
-                >
-                  {buttonText}
-                </button>
-              </Link>
             ) : (
               <button
                 onClick={onClick}
@@ -107,7 +79,7 @@ export function PricingCard({
                   "w-full font-medium px-5 py-3 rounded-lg transform hover:-translate-y-0.5 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-opacity-50 cursor-pointer",
                   isPrimary
                     ? "bg-emerald-600 hover:bg-emerald-500 text-white shadow-lg shadow-emerald-900/20 focus:ring-emerald-500 disabled:opacity-50 disabled:pointer-events-none"
-                    : "bg-neutral-300 dark:bg-neutral-700 hover:bg-neutral-200 dark:hover:bg-neutral-600 text-neutral-900 dark:text-white"
+                    : "bg-neutral-200 dark:bg-neutral-850 hover:bg-neutral-150 dark:hover:bg-neutral-800 text-neutral-600 dark:text-neutral-300 border border-neutral-250 dark:border-neutral-800 shadow-lg focus:ring-neutral-400"
                 )}
               >
                 {buttonText}
