@@ -132,8 +132,7 @@ export function AddSite({ trigger, disabled }: { trigger?: React.ReactNode; disa
           )}
         </TooltipTrigger>
         <TooltipContent>
-          You have reached the limit of {subscription?.isPro ? STANDARD_SITE_LIMIT : FREE_SITE_LIMIT} websites. Upgrade
-          to add more websites
+          You have reached the limit of {getSiteLimit(subscription)} websites. Upgrade to add more websites
         </TooltipContent>
       </Tooltip>
     );

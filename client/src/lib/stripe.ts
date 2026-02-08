@@ -319,3 +319,13 @@ export const getStripePrices = () => {
     priceId: TEST_TO_PRICE_ID[price.name as keyof typeof TEST_TO_PRICE_ID],
   }));
 };
+
+export function getPlanType(name: string) {
+  if (name.includes("standard")) {
+    return "Standard";
+  }
+  if (name.includes("pro")) {
+    return "Pro";
+  }
+  return "Free"
+}

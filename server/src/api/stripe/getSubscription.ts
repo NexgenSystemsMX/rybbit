@@ -48,7 +48,6 @@ export async function getSubscriptionInner(organizationId: string) {
       monthlyEventCount: org.monthlyEventCount || 0,
       interval: subscription.interval,
       cancelAtPeriodEnd: subscription.cancelAtPeriodEnd,
-      isPro: subscription.isPro,
       isOverride: true,
     };
   }
@@ -64,7 +63,6 @@ export async function getSubscriptionInner(organizationId: string) {
       monthlyEventCount: org.monthlyEventCount || 0,
       interval: subscription.interval,
       cancelAtPeriodEnd: subscription.cancelAtPeriodEnd,
-      isPro: false,
     };
   }
 
@@ -72,7 +70,6 @@ export async function getSubscriptionInner(organizationId: string) {
     return {
       id: subscription.subscriptionId,
       planName: subscription.planName,
-      isPro: subscription.isPro,
       status: subscription.status,
       createdAt: subscription.createdAt,
       currentPeriodStart: DateTime.fromISO(subscription.periodStart).toJSDate(),

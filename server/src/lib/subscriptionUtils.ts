@@ -16,7 +16,6 @@ export interface AppSumoSubscriptionInfo {
   status: "active";
   interval: "lifetime";
   cancelAtPeriodEnd: false;
-  isPro: false;
 }
 
 export interface StripeSubscriptionInfo {
@@ -30,7 +29,6 @@ export interface StripeSubscriptionInfo {
   status: string;
   interval: string;
   cancelAtPeriodEnd: boolean;
-  isPro: boolean;
   createdAt: Date;
 }
 
@@ -51,7 +49,6 @@ export interface OverrideSubscriptionInfo {
   status: "active";
   interval: "month" | "year" | "lifetime";
   cancelAtPeriodEnd: false;
-  isPro: boolean;
 }
 
 export type SubscriptionInfo =
@@ -91,7 +88,6 @@ export async function getAppSumoSubscription(organizationId: string): Promise<Ap
         status: "active",
         interval: "lifetime",
         cancelAtPeriodEnd: false,
-        isPro: false,
       };
     }
 
@@ -134,7 +130,6 @@ export async function getOverrideSubscription(organizationId: string): Promise<O
         status: "active",
         interval: "lifetime",
         cancelAtPeriodEnd: false,
-        isPro: false,
       };
     }
 
@@ -155,7 +150,6 @@ export async function getOverrideSubscription(organizationId: string): Promise<O
       status: "active",
       interval: planDetails.interval,
       cancelAtPeriodEnd: false,
-      isPro: planDetails.name.includes("pro"),
     };
   } catch (error) {
     console.error("Error checking plan override:", error);
@@ -210,7 +204,6 @@ export async function getStripeSubscription(stripeCustomerId: string | null): Pr
         status: subscription.status,
         interval: subscriptionItem.price.recurring?.interval ?? "unknown",
         cancelAtPeriodEnd: subscription.cancel_at_period_end,
-        isPro: false,
         createdAt: new Date(subscription.created * 1000),
       };
     }
@@ -234,7 +227,6 @@ export async function getStripeSubscription(stripeCustomerId: string | null): Pr
       status: subscription.status,
       interval: subscriptionItem.price.recurring?.interval ?? "unknown",
       cancelAtPeriodEnd: subscription.cancel_at_period_end,
-      isPro: planDetails.name.includes("pro"),
       createdAt: new Date(subscription.created * 1000),
     };
   } catch (error) {

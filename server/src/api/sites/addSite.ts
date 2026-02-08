@@ -74,7 +74,7 @@ export async function addSite(
     if (IS_CLOUD) {
       const subscription = await getSubscriptionInner(organizationId);
 
-      if (sessionReplay && !subscription?.isPro) {
+      if (sessionReplay && !subscription?.planName.includes("pro")) {
         return reply.status(403).send({
           error: "Session replay requires a Pro subscription",
         });

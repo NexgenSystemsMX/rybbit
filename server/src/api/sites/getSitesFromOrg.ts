@@ -24,10 +24,10 @@ export async function getSitesFromOrg(
     const [memberCheck, allSitesData, orgInfo] = await Promise.all([
       userId
         ? db
-            .select()
-            .from(member)
-            .where(and(eq(member.organizationId, organizationId), eq(member.userId, userId)))
-            .limit(1)
+          .select()
+          .from(member)
+          .where(and(eq(member.organizationId, organizationId), eq(member.userId, userId)))
+          .limit(1)
         : Promise.resolve([]),
       db.select().from(sites).where(eq(sites.organizationId, organizationId)),
       db.select().from(organization).where(eq(organization.id, organizationId)).limit(1),
@@ -110,7 +110,6 @@ export async function getSitesFromOrg(
         overMonthlyLimit: monthlyEventCount > eventLimit,
         planName: subscription?.planName || "free",
         status: subscription?.status || "free",
-        isPro: subscription?.planName.includes("pro") || false,
       },
     });
   } catch (err) {

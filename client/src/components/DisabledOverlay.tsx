@@ -106,7 +106,7 @@ export const DisabledOverlay: React.FC<DisabledOverlayProps> = ({
       if (organization?.createdAt && DateTime.fromJSDate(organization?.createdAt) < DateTime.fromISO("2025-09-19")) {
         return false;
       }
-      return !subscription?.isPro;
+      return !subscription?.planName.includes("pro");
     }
     return subscription?.eventLimit === DEFAULT_EVENT_LIMIT;
   }, [subscription, requiredPlan, organization]);

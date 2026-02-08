@@ -7,6 +7,7 @@ import { Alert, AlertDescription, AlertTitle } from "../ui/alert";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "../ui/card";
 import { Progress } from "../ui/progress";
 import { UsageChart } from "../UsageChart";
+import { getPlanType } from "../../lib/stripe";
 
 export function OverridePlan() {
   const { data: subscription } = useStripeSubscription();
@@ -27,7 +28,6 @@ export function OverridePlan() {
   const isLimitExceeded = currentUsage >= limit;
 
   const formatPlanName = (name: string) => {
-    const isPro = name.includes("pro");
     const eventMatch = name.match(/(\d+)(k|m)/i);
     if (!eventMatch) return name;
 
@@ -35,7 +35,7 @@ export function OverridePlan() {
     const unit = eventMatch[2].toLowerCase();
     const events = unit === "m" ? `${num}M` : `${num}K`;
 
-    return `${isPro ? "Pro" : "Standard"} ${events}`;
+    return `${getPlanType(name)} ${events}`;
   };
 
   return (

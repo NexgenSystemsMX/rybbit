@@ -1,7 +1,7 @@
-import { useQuery, UseQueryResult } from "@tanstack/react-query";
 import { authClient } from "@/lib/auth";
-import { BACKEND_URL, IS_CLOUD } from "../const";
+import { useQuery, UseQueryResult } from "@tanstack/react-query";
 import { authedFetch } from "../../api/utils";
+import { IS_CLOUD } from "../const";
 
 export interface SubscriptionData {
   id: string;
@@ -17,7 +17,6 @@ export interface SubscriptionData {
   isTrial?: boolean;
   trialDaysRemaining?: number;
   message?: string; // For expired trial message
-  isPro?: boolean;
   isOverride?: boolean;
 }
 
