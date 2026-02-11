@@ -35,10 +35,6 @@ function SiteSelectorContent({ onSiteSelect }: { onSiteSelect: () => void }) {
               siteId: 81,
               domain: "rybbit.com",
             },
-            {
-              siteId: 1,
-              domain: "tomato.gg",
-            },
           ].map(site => {
             const isSelected = site.siteId === currentSiteId;
             return (
