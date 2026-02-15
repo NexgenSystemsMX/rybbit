@@ -166,15 +166,16 @@ export const trackingPayloadSchema = z.discriminatedUnion("type", [
           val => {
             try {
               const parsed = JSON.parse(val);
-              if (typeof parsed.textLength !== "number" || parsed.textLength < 0) return false;
               if (typeof parsed.sourceElement !== "string") return false;
+              if (parsed.text !== undefined && typeof parsed.text !== "string") return false;
+              if (parsed.textLength !== undefined && (typeof parsed.textLength !== "number" || parsed.textLength < 0)) return false;
               return true;
             } catch {
               return false;
             }
           },
           {
-            message: "Properties must be valid JSON with copy fields (textLength>=0, sourceElement required)",
+            message: "Properties must be valid JSON with copy fields (sourceElement required, text and textLength optional)",
           }
         ),
     })
