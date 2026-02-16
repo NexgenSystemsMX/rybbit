@@ -37,6 +37,7 @@ export class FormTrackingManager {
       formAction: form.action || "",
       method: (form.method || "get").toUpperCase(),
       fieldCount: form.elements.length,
+      ariaLabel: form.getAttribute("aria-label") || undefined,
       ...this.extractDataAttributes(form),
     };
 
@@ -49,17 +50,28 @@ export class FormTrackingManager {
 
     if (!["INPUT", "SELECT", "TEXTAREA"].includes(tagName)) return;
 
+    // Skip disabled inputs
+    if ((target as HTMLInputElement).disabled) return;
+
     // Skip hidden inputs and password fields for privacy
     if (tagName === "INPUT") {
       const inputType = (target as HTMLInputElement).type?.toLowerCase();
       if (inputType === "hidden" || inputType === "password") return;
     }
 
+    const inputName =
+      (target as HTMLInputElement).name ||
+      target.id ||
+      target.getAttribute("aria-label") ||
+      (target as HTMLInputElement).placeholder ||
+      "";
+
     const properties: InputChangeProperties = {
       element: tagName.toLowerCase(),
       inputType: tagName === "INPUT" ? (target as HTMLInputElement).type?.toLowerCase() : undefined,
-      inputName: (target as HTMLInputElement).name || target.id || "",
+      inputName,
       formId: (target as HTMLInputElement).form?.id || undefined,
+      formName: (target as HTMLInputElement).form?.name || undefined,
       ...this.extractDataAttributes(target),
     };
 

@@ -74,14 +74,16 @@ export interface FormSubmitProperties {
   formAction: string;
   method: string;
   fieldCount: number;
+  ariaLabel?: string;
   [key: string]: string | number | undefined;
 }
 
 export interface InputChangeProperties {
   element: string; // "input" | "select" | "textarea"
   inputType?: string; // For inputs: "text", "email", "checkbox", etc.
-  inputName: string; // Name or id attribute
+  inputName: string; // Name, id, aria-label, or placeholder attribute
   formId?: string; // Parent form id if within a form
+  formName?: string; // Parent form name if within a form
   [key: string]: string | undefined;
 }
 

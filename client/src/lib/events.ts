@@ -57,6 +57,7 @@ export function getEventDisplayName(item: EventLike): string {
     }
     case "form_submit":
       if (item.props?.formId) return `Submitted form "${item.props.formId}"`;
+      if (item.props?.formName) return `Submitted form "${item.props.formName}"`;
       if (item.props?.formAction) return `Submitted form to "${item.props.formAction}"`;
       return "Submitted form";
     case "input_change": {
@@ -73,6 +74,6 @@ export function getEventDisplayName(item: EventLike): string {
 export const PROPS_TO_HIDE: Record<string, string[]> = {
   button_click: ["text"],
   copy: ["text"],
-  form_submit: ["formId", "formAction"],
+  form_submit: ["formId", "formName", "formAction"],
   input_change: ["inputName", "inputType", "element"],
 };

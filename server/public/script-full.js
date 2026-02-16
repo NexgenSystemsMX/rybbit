@@ -1053,7 +1053,16 @@
     }
     getElementText(element) {
       const text = element.textContent?.trim().substring(0, 100);
-      return text || void 0;
+      if (text) return text;
+      const ariaLabel = element.getAttribute("aria-label")?.trim().substring(0, 100);
+      if (ariaLabel) return ariaLabel;
+      if (element.tagName === "INPUT") {
+        const value = element.value?.trim().substring(0, 100);
+        if (value) return value;
+      }
+      const title = element.getAttribute("title")?.trim().substring(0, 100);
+      if (title) return title;
+      return void 0;
     }
     cleanup() {
       document.removeEventListener("click", this.handleClick.bind(this), true);
@@ -1114,6 +1123,7 @@
         formAction: form.action || "",
         method: (form.method || "get").toUpperCase(),
         fieldCount: form.elements.length,
+        ariaLabel: form.getAttribute("aria-label") || void 0,
         ...this.extractDataAttributes(form)
       };
       this.tracker.trackFormSubmit(properties);
@@ -1122,15 +1132,18 @@
       const target = event.target;
       const tagName = target.tagName.toUpperCase();
       if (!["INPUT", "SELECT", "TEXTAREA"].includes(tagName)) return;
+      if (target.disabled) return;
       if (tagName === "INPUT") {
         const inputType = target.type?.toLowerCase();
         if (inputType === "hidden" || inputType === "password") return;
       }
+      const inputName = target.name || target.id || target.getAttribute("aria-label") || target.placeholder || "";
       const properties = {
         element: tagName.toLowerCase(),
         inputType: tagName === "INPUT" ? target.type?.toLowerCase() : void 0,
-        inputName: target.name || target.id || "",
+        inputName,
         formId: target.form?.id || void 0,
+        formName: target.form?.name || void 0,
         ...this.extractDataAttributes(target)
       };
       this.tracker.trackInputChange(properties);

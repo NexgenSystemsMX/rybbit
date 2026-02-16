@@ -43,7 +43,7 @@ Automatically tracks clicks on:
 - `<input type="submit">` and `<input type="button">`
 
 **Tracked properties:**
-- `text` - The button's text content
+- `text` - The button's text content (falls back to `aria-label`, then `value` for input buttons, then `title`)
 
 ### Adding Custom Properties
 
@@ -96,6 +96,7 @@ Triggered when a form is submitted.
 - `formAction` - The form's `action` URL
 - `method` - HTTP method (GET, POST, etc.)
 - `fieldCount` - Number of form fields
+- `ariaLabel` - The form's `aria-label` attribute (if present)
 
 You can add custom properties using `data-rybbit-prop-*` on the form element:
 
@@ -111,13 +112,14 @@ You can add custom properties using `data-rybbit-prop-*` on the form element:
 
 ### Input Changes (`input_change`)
 
-Triggered when a user changes the value of an input, select, or textarea field.
+Triggered when a user changes the value of an input, select, or textarea field. Disabled inputs are automatically excluded from tracking.
 
 **Tracked properties:**
 - `element` - The element type (`input`, `select`, or `textarea`)
 - `inputType` - For inputs: the type attribute (e.g., `text`, `email`, `checkbox`)
-- `inputName` - The field's `name` or `id` attribute
+- `inputName` - The field's `name`, `id`, `aria-label`, or `placeholder` attribute (first available)
 - `formId` - The parent form's `id` (if within a form)
+- `formName` - The parent form's `name` (if within a form)
 
 You can add custom properties using `data-rybbit-prop-*` on the input element:
 
@@ -135,7 +137,7 @@ You can add custom properties using `data-rybbit-prop-*` on the input element:
 </select>
 ```
 
-**Privacy note:** Hidden inputs and password fields are automatically excluded from tracking.
+**Privacy note:** Hidden inputs, password fields, and disabled inputs are automatically excluded from tracking.
 
 ## Enabling Autocapture
 
