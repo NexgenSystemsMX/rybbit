@@ -368,9 +368,9 @@ const getQuery = (request: FastifyRequest<GetMetricRequest>, isCountQuery: boole
     ),
     SessionData AS (
         SELECT
-            ${sqlParam} as value,
+            argMin(${sqlParam}, e.timestamp) as value,
             e.session_id,
-            spc.pageviews_in_session
+            any(spc.pageviews_in_session) as pageviews_in_session
         FROM events e
         LEFT JOIN SessionPageCounts spc ON e.session_id = spc.session_id
         WHERE
@@ -379,6 +379,7 @@ const getQuery = (request: FastifyRequest<GetMetricRequest>, isCountQuery: boole
             AND ${sqlParam} <> ''
             ${filterStatement}
             ${timeStatement}
+        GROUP BY e.session_id
     )
     SELECT
         value,
