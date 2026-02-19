@@ -186,7 +186,7 @@ export function SiteConfiguration({ siteMetadata, disabled = false, onClose }: S
   const { data: subscription, isLoading: isSubscriptionLoading } = useStripeSubscription();
 
   const sessionReplayDisabled = !subscription?.planName.includes("pro") && IS_CLOUD;
-  const standardFeaturesDisabled = !subscription?.planName.includes("standard") && IS_CLOUD;
+  const standardFeaturesDisabled = !subscription?.planName.includes("standard") && !subscription?.planName.includes("appsumo") && IS_CLOUD;
 
   // Configuration for analytics feature toggles
   const analyticsToggles: ToggleConfig[] = [
