@@ -12,7 +12,8 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { getTimezoneLabel, timezones } from "@/lib/dateTimeUtils";
 import { getTimezone, useStore } from "@/lib/store";
-import { Calendar, Check, Globe } from "lucide-react";
+import { cn } from "@/lib/utils";
+import { Calendar } from "lucide-react";
 import { DateTime } from "luxon";
 import { CustomDateRangePicker } from "./CustomDateRangePicker";
 import { Time } from "./types";
@@ -119,7 +120,7 @@ export function DateSelector({
         <Calendar className="hidden sm:block w-4 h-4" />
         {getLabel(time)}
       </DropdownMenuTrigger>
-      <DropdownMenuContent align="end">
+      <DropdownMenuContent align="end" className="w-52">
         <DropdownMenuItem
           onClick={() => {
             const tz = getTimezone();
@@ -130,10 +131,23 @@ export function DateSelector({
               wellKnown: "today",
             });
           }}
-          className="w-48"
+          className={cn(time.wellKnown === "today" && "bg-neutral-50 dark:bg-neutral-800 font-medium")}
         >
-          <div className="w-4">{time.wellKnown === "today" && <Check className="w-4 h-4" />}</div>
           Today
+        </DropdownMenuItem>
+        <DropdownMenuItem
+          onClick={() => {
+            const tz = getTimezone();
+            const now = DateTime.now().setZone(tz);
+            setTime({
+              mode: "day",
+              day: now.minus({ days: 1 }).toISODate()!,
+              wellKnown: "yesterday",
+            });
+          }}
+          className={cn(time.wellKnown === "yesterday" && "bg-neutral-50 dark:bg-neutral-800 font-medium")}
+        >
+          Yesterday
         </DropdownMenuItem>
         <DropdownMenuItem
           onClick={() => {
@@ -146,8 +160,8 @@ export function DateSelector({
               wellKnown: "last-3-days",
             });
           }}
+          className={cn(time.wellKnown === "last-3-days" && "bg-neutral-50 dark:bg-neutral-800 font-medium")}
         >
-          <div className="w-4">{time.wellKnown === "last-3-days" && <Check className="w-4 h-4" />}</div>
           Last 3 Days
         </DropdownMenuItem>
         <DropdownMenuItem
@@ -161,8 +175,8 @@ export function DateSelector({
               wellKnown: "last-7-days",
             });
           }}
+          className={cn(time.wellKnown === "last-7-days" && "bg-neutral-50 dark:bg-neutral-800 font-medium")}
         >
-          <div className="w-4">{time.wellKnown === "last-7-days" && <Check className="w-4 h-4" />}</div>
           Last 7 Days
         </DropdownMenuItem>
         <DropdownMenuItem
@@ -176,8 +190,8 @@ export function DateSelector({
               wellKnown: "last-14-days",
             });
           }}
+          className={cn(time.wellKnown === "last-14-days" && "bg-neutral-50 dark:bg-neutral-800 font-medium")}
         >
-          <div className="w-4">{time.wellKnown === "last-14-days" && <Check className="w-4 h-4" />}</div>
           Last 14 Days
         </DropdownMenuItem>
         <DropdownMenuItem
@@ -191,8 +205,8 @@ export function DateSelector({
               wellKnown: "last-30-days",
             });
           }}
+          className={cn(time.wellKnown === "last-30-days" && "bg-neutral-50 dark:bg-neutral-800 font-medium")}
         >
-          <div className="w-4">{time.wellKnown === "last-30-days" && <Check className="w-4 h-4" />}</div>
           Last 30 Days
         </DropdownMenuItem>
         <DropdownMenuItem
@@ -206,8 +220,8 @@ export function DateSelector({
               wellKnown: "last-60-days",
             });
           }}
+          className={cn(time.wellKnown === "last-60-days" && "bg-neutral-50 dark:bg-neutral-800 font-medium")}
         >
-          <div className="w-4">{time.wellKnown === "last-60-days" && <Check className="w-4 h-4" />}</div>
           Last 60 Days
         </DropdownMenuItem>
         {pastMinutesEnabled && (
@@ -222,8 +236,8 @@ export function DateSelector({
                   wellKnown: "last-30-minutes",
                 })
               }
+              className={cn(time.wellKnown === "last-30-minutes" && "bg-neutral-50 dark:bg-neutral-800 font-medium")}
             >
-              <div className="w-4">{time.wellKnown === "last-30-minutes" && <Check className="w-4 h-4" />}</div>
               Last 30 Minutes
             </DropdownMenuItem>
             <DropdownMenuItem
@@ -235,8 +249,8 @@ export function DateSelector({
                   wellKnown: "last-1-hour",
                 })
               }
+              className={cn(time.wellKnown === "last-1-hour" && "bg-neutral-50 dark:bg-neutral-800 font-medium")}
             >
-              <div className="w-4">{time.wellKnown === "last-1-hour" && <Check className="w-4 h-4" />}</div>
               Last 1 Hour
             </DropdownMenuItem>
             <DropdownMenuItem
@@ -248,8 +262,8 @@ export function DateSelector({
                   wellKnown: "last-6-hours",
                 })
               }
+              className={cn(time.wellKnown === "last-6-hours" && "bg-neutral-50 dark:bg-neutral-800 font-medium")}
             >
-              <div className="w-4">{time.wellKnown === "last-6-hours" && <Check className="w-4 h-4" />}</div>
               Last 6 Hours
             </DropdownMenuItem>
             <DropdownMenuItem
@@ -261,8 +275,8 @@ export function DateSelector({
                   wellKnown: "last-24-hours",
                 })
               }
+              className={cn(time.wellKnown === "last-24-hours" && "bg-neutral-50 dark:bg-neutral-800 font-medium")}
             >
-              <div className="w-4">{time.wellKnown === "last-24-hours" && <Check className="w-4 h-4" />}</div>
               Last 24 Hours
             </DropdownMenuItem>
           </>
@@ -278,8 +292,8 @@ export function DateSelector({
               wellKnown: "this-week",
             });
           }}
+          className={cn(time.wellKnown === "this-week" && "bg-neutral-50 dark:bg-neutral-800 font-medium")}
         >
-          <div className="w-4">{time.wellKnown === "this-week" && <Check className="w-4 h-4" />}</div>
           This Week
         </DropdownMenuItem>
         <DropdownMenuItem
@@ -292,8 +306,8 @@ export function DateSelector({
               wellKnown: "this-month",
             });
           }}
+          className={cn(time.wellKnown === "this-month" && "bg-neutral-50 dark:bg-neutral-800 font-medium")}
         >
-          <div className="w-4">{time.wellKnown === "this-month" && <Check className="w-4 h-4" />}</div>
           This Month
         </DropdownMenuItem>
         <DropdownMenuItem
@@ -306,8 +320,8 @@ export function DateSelector({
               wellKnown: "this-year",
             });
           }}
+          className={cn(time.wellKnown === "this-year" && "bg-neutral-50 dark:bg-neutral-800 font-medium")}
         >
-          <div className="w-4">{time.wellKnown === "this-year" && <Check className="w-4 h-4" />}</div>
           This Year
         </DropdownMenuItem>
         <DropdownMenuItem
@@ -317,8 +331,8 @@ export function DateSelector({
               wellKnown: "all-time",
             })
           }
+          className={cn(time.wellKnown === "all-time" && "bg-neutral-50 dark:bg-neutral-800 font-medium")}
         >
-          <div className="w-4">{time.wellKnown === "all-time" && <Check className="w-4 h-4" />}</div>
           All Time
         </DropdownMenuItem>
         <DropdownMenuSeparator />
@@ -326,15 +340,15 @@ export function DateSelector({
         <DropdownMenuSeparator />
         <DropdownMenuSub>
           <DropdownMenuSubTrigger>
-            <div className="w-4">
-              <Globe className="w-4 h-4" />
-            </div>
             {getTimezoneLabel(timezone)}
           </DropdownMenuSubTrigger>
           <DropdownMenuSubContent>
             {timezones.map(tz => (
-              <DropdownMenuItem key={tz.value} onClick={() => setTimezone(tz.value)}>
-                <div className="w-4">{timezone === tz.value && <Check className="w-4 h-4" />}</div>
+              <DropdownMenuItem
+                key={tz.value}
+                onClick={() => setTimezone(tz.value)}
+                className={cn(timezone === tz.value && "bg-neutral-50 dark:bg-neutral-800 font-medium")}
+              >
                 {tz.label}
               </DropdownMenuItem>
             ))}

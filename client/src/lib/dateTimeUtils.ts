@@ -222,8 +222,7 @@ export const timezones = [
 // Get timezone label for display
 export const getTimezoneLabel = (value: string): string => {
   if (value === "system") {
-    return `System (${timeZone})`;
+    return `System`;
   }
-  const tz = timezones.find((t) => t.value === value);
-  return tz?.label ?? value;
+  return value;
 };
