@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { LanguageSwitcher } from "@/components/LanguageSwitcher";
 
 export function Footer() {
   return (
@@ -231,6 +232,7 @@ export function Footer() {
         <div className="pt-8 border-t border-neutral-200 dark:border-neutral-800">
           <div className="flex flex-col md:flex-row items-center justify-between gap-4">
             <div className="text-sm text-neutral-400">© {new Date().getFullYear()} Rybbit. All rights reserved.</div>
+            <LanguageSwitcher />
             <div className="text-sm text-neutral-400">
               Made with ❤️ by frogs{" "}
               <a href="https://tomato.gg" target="_blank" title="Tomato.gg">
