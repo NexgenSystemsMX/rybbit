@@ -1,7 +1,10 @@
+"use client";
+
 import { Check, X, ArrowDown, ArrowUp } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { trackAdEvent } from "@/lib/trackAdEvent";
 import { AppLink } from "./AppLink";
+import { useExtracted } from "next-intl";
 import { useState } from "react";
 
 export type FeatureItem = { feature: string; included?: boolean } | string;
@@ -39,6 +42,7 @@ export function PricingCard({
   disabled,
   eventLocation,
 }: PricingCardProps) {
+  const t = useExtracted();
   const [isExpanded, setIsExpanded] = useState(false);
   const isFree = variant === "free";
   const isPrimary = buttonVariant === "primary";
@@ -65,7 +69,7 @@ export function PricingCard({
                 <h3 className="text-xl font-bold">{title}</h3>
                 {recommended && (
                   <span className="px-2 py-0.5 text-xs font-semibold bg-emerald-500/30 dark:bg-emerald-500/20 text-emerald-600 dark:text-emerald-400 rounded-full border border-emerald-500/40 dark:border-emerald-500/30">
-                    Recommended
+                    {t("Recommended")}
                   </span>
                 )}
               </div>
@@ -142,12 +146,12 @@ export function PricingCard({
                   {isExpanded ? (
                     <>
                       <ArrowUp className="h-4 w-4 mr-3" />
-                      Show less
+                      {t("Show less")}
                     </>
                   ) : (
                     <>
                       <ArrowDown className="h-4 w-4 mr-3" />
-                      Show more ({features.length - 7} more)
+                      {t("Show more ({count} more)", { count: String(features.length - 7) })}
                     </>
                   )}
                 </button>
