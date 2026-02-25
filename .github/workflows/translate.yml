@@ -113,9 +113,10 @@ jobs:
             - Maintain consistent terminology within each language file
             - Do NOT modify en.json
             - If there are no missing translations, do nothing
+            - You may use python3 to read/analyze/update the JSON files
 
             After translating, commit and push directly to master using these exact steps (run each command separately, use only single-line messages with no newlines):
-            1. git add client/messages/
+            1. git add client/messages/*.json
             2. git commit -m "Update translations"
             3. git push origin master
           claude_args: >-
