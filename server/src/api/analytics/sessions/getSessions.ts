@@ -57,7 +57,8 @@ export interface GetSessionsRequest {
     limit: number;
     page: number;
     user_id?: string;
-    session_id?: string;
+    session_id?: string
+    ;
     identified_only?: string;
     min_pageviews?: string;
     min_events?: string;
