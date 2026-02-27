@@ -128,6 +128,16 @@ import { telemetryService } from "./services/telemetryService.js";
 import { handleIdentify } from "./services/tracker/identifyService.js";
 import { trackEvent } from "./services/tracker/trackEvent.js";
 import { weeklyReportService } from "./services/weekyReports/weeklyReportService.js";
+import {
+  requirePublicApiKey,
+  getPublicOverview,
+  getPublicOverviewBucketed,
+  getPublicPageviews,
+  getPublicEvents,
+  getPublicSessions,
+  getPublicUsers,
+  getPublicFunnel,
+} from "./api/public/index.js";
 
 // Pre-composed middleware chains for common auth patterns
 // Cast as any to work around Fastify's type inference limitations with preHandler
@@ -138,6 +148,7 @@ const authOnly = { preHandler: [requireAuth] as any };
 const adminOnly = { preHandler: [requireAdmin] as any };
 const orgMember = { preHandler: [requireOrgMember] as any };
 const orgAdminParams = { preHandler: [requireOrgAdminFromParams] as any };
+const publicApiAuth = { preHandler: [requirePublicApiKey] as any };
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -370,6 +381,17 @@ async function stripeAdminRoutes(fastify: FastifyInstance) {
   }
 }
 
+// Public API routes for server-to-server consumption (n8n, Postman, etc.)
+async function publicApiRoutes(fastify: FastifyInstance) {
+  fastify.get("/analytics/overview", publicApiAuth, getPublicOverview);
+  fastify.get("/analytics/overview-bucketed", publicApiAuth, getPublicOverviewBucketed);
+  fastify.get("/analytics/pageviews", publicApiAuth, getPublicPageviews);
+  fastify.get("/analytics/events", publicApiAuth, getPublicEvents);
+  fastify.get("/analytics/sessions", publicApiAuth, getPublicSessions);
+  fastify.get("/analytics/users", publicApiAuth, getPublicUsers);
+  fastify.post("/analytics/funnels", publicApiAuth, getPublicFunnel);
+}
+
 // Main API routes plugin - registers all domain plugins
 async function apiRoutes(fastify: FastifyInstance) {
   await fastify.register(analyticsRoutes);
@@ -379,6 +401,7 @@ async function apiRoutes(fastify: FastifyInstance) {
   await fastify.register(userRoutes);
   await fastify.register(gscRoutes);
   await fastify.register(stripeAdminRoutes);
+  await fastify.register(publicApiRoutes, { prefix: "/public" });
 
   // Health check
   fastify.get("/health", { logLevel: "silent" }, (_: FastifyRequest, reply: FastifyReply) => reply.send("OK"));

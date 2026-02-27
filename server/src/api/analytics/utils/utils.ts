@@ -6,6 +6,23 @@ import { db } from "../../../db/postgres/postgres.js";
 import { userProfiles } from "../../../db/postgres/schema.js";
 import { validateTimeStatementParams } from "./query-validation.js";
 
+/**
+ * Get default time parameters (last 7 days in UTC)
+ */
+export function getDefaultTimeParams(): {
+  start_date: string;
+  end_date: string;
+  time_zone: string;
+} {
+  const now = new Date();
+  const sevenDaysAgo = new Date(now.getTime() - 7 * 24 * 60 * 60 * 1000);
+  return {
+    start_date: sevenDaysAgo.toISOString().split("T")[0],
+    end_date: now.toISOString().split("T")[0],
+    time_zone: "UTC",
+  };
+}
+
 export function getTimeStatement(
   params: Pick<FilterParams, "start_date" | "end_date" | "time_zone" | "past_minutes_start" | "past_minutes_end">
 ) {
